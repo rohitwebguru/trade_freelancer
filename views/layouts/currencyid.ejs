@@ -1,0 +1,47 @@
+<%- include('../layouts/header.ejs') %>
+
+    <div class="body-wrapper">
+        <div class="bodywrapper__inner">
+            <div class="row align-items-center mb-30 justify-content-between">
+                <div class="col-lg-6 col-sm-6">
+                    <h6 class="page-title">Currency ID</h6>
+                </div>
+                <div class="col-lg-6 col-sm-6 text-sm-right mt-sm-0 mt-3 right-part">
+                    <form action="" method="GET" class="form-inline float-sm-right bg--white">
+                        <div class="input-group has_append">
+                            <input type="text" name="search" class="form-control" placeholder="Currency ID" value="">
+                            <div class="input-group-append">
+                                <button class="btn btn--primary" type="submit"><i class="fa fa-search"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card b-radius--10">
+                        <div class="card-body p-0">
+                            <div class="table-responsive--md  table-responsive">
+                                <table class="table table--light style--two">
+                                    <thead>
+                                        <th scope="col">Id</th>
+                                        <th scope="col">Code</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Country</th>
+                                        <th scope="col">Sign</th>
+                                        <th scope="col">Exchange Rate</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-muted text-center" colspan="100%">No Currency ID found</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<%- include('../layouts/footer.ejs') %>

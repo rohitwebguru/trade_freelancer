@@ -1,0 +1,236 @@
+<%- include('../layouts/header.ejs') %>
+    <div class="body-wrapper">
+        <div class="bodywrapper__inner">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h2 id="project-title-for-job-detail-page"></h2>
+                    <!-- <select class="form-control select-project-for-job-detail" style="text-transform: capitalize;">
+                        <option value="0">select job</option>
+                        <% projects.forEach((val,i) => { %>
+                            <option value="<%= val.id %>" data-owner_id="<%= val.owner_id %>"><%= val.title %></option>
+                        <% }) %>
+                    </select> -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 job-detail">
+                    <div class="wrapper">
+                        <ul class="border-as-triangle">
+                            <li data-tab-target="tab-1" class="active">
+                                <a>Job Detail</a>
+                            </li>
+                            <li data-tab-target="tab-2">
+                                <a>Freelancer Bids</a>
+                            </li>
+                            <li data-tab-target="tab-3">
+                                <a>Invite Freelancers</a>
+                            </li>
+                            <li data-tab-target="tab-4">
+                                <a>Hired</a>
+                            </li>
+                        </ul>
+                        <div class="tabs">
+                            <div class="tabs__content">
+                                <div class="d-none spinner-border text-primary" role="status">
+                                    <span class="sr-only">Loading...</span>
+                                </div>
+                                <div class="tabs__pane is-visible" id="tab-1" role="tabpanel">
+                                    <h4 class="choose-project"></h4>
+                                    <div class="card project-detail">
+
+                                        <div class="card-body">
+                                            <p class="project-desc"></p>
+                                            <p class="card-budget"></p>
+                                            <p class="project-submitted-on"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tabs__pane" id="tab-2" role="tabpanel">
+                                    <div class="col-lg-12">
+                                        <div class="card b-radius--10 ">
+                                            <div class="card-body p-0">
+                                                <div class="">
+                                                    <input type="hidden" id="owner_id_jobproject" name="owner_id_jobproject" value="">
+                                                    <input type="hidden" id="hireme_id_jobproject" name="hireme_id_jobproject" value="">
+                                                    <input type="hidden" id="hireme_bidder_id" name="hireme_bidder_id" value="">
+                                                    <input type="hidden" id="project_name" name="project_name" value="">
+                                                    <input type="hidden" id="project_name_description" name="project_name_description" value="">
+                                                    <table class="all-my-proposals-table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Bidder-id</th>
+                                                                <th>Description</th>
+                                                                <th>Amount</th>
+                                                                <th>Period</th>
+                                                                <th>Date</th>
+                                                                <th>Milestone Percentage</th>
+                                                                <th>Action</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="proposals-table">
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="modal fade" id="freelancerhireme" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <form method="post" id="send-hireme-form">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title freelancer-hireme-title"></h5>
+                                                    <button type="button" data-bs-dismiss="modal">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                                </div>
+                                                <div class="alert alert-danger" role="alert" id="error" style="display:none;margin: 10px;"></div>
+                                                <div class="alert alert-success" role="alert" id="success" style="display:none;margin: 10px;"></div>
+                                                <div class="modal-body">
+
+                                                    <div class="private-message-section">
+                                                        <div class="profile-section">
+                                                            <div class="freelancer-hiremename">
+                                                                <label for="project_for_hireme" style="font-weight: 700;display: inline-block;font-size: 16px;line-height: 1.5;">Project Name</label>
+                                                                <input type="text" class="project_for_hireme" name="project_for_hireme" id="project_for_hireme" value="" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="private-message">
+                                                            <div class="form-group">
+                                                                <label for="message_for_freelancer_hireme" style="font-weight: 700;display: inline-block;font-size: 16px;line-height: 1.5;">Send a private message</label>
+                                                                <textarea type="text" class="form-control message_for_freelancer_hireme" name="message_for_freelancer_hireme" id="message_for_freelancer_hireme" rows="12"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="choose-project-hire-me">
+                                                        <div class="form-group">
+                                                            <p style="font-weight: 700;display: inline-block;font-size: 16px;line-height: 1.5;width: 100%;">Hire for</p>
+                                                            <input type="radio" name="project" id="existingproject_hireme" class="existingproject_hireme" value="fixed" checked>
+                                                            <label for="existingproject_hireme" style="font-weight: 700;display: inline-block;font-size: 13px;line-height: 1;position: relative;top:-2px">Fixed Price</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="profile-section">
+                                                        <div class="freelancer-hiremename-budget">
+                                                            <label for="project_for_hireme_budget" style="font-weight: 700;display: inline-block;font-size: 16px;line-height: 1.5;width: 100%;">Budget</label>
+                                                            <!-- <span class="currency_sign"></span> -->
+                                                            <input type="text" class="project_for_hireme_budget" name="project_for_hireme_budget" id="project_for_hireme_budget" value="" />
+                                                            <select class="project_for_hireme_budget_sign" name="project_for_hireme_budget_sign" id="project_for_hireme_budget_sign">
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="submit" class="btn btn-primary" id="send-invitation-msg-hire"></button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tabs__pane invite_freelancers" id="tab-3" role="tabpanel">
+
+                                </div>
+                                <div class="tabs__pane" id="tab-4" role="tabpanel">
+                                    <ul class="list-group allHiredFreelancers">
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="inviteforproject" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <form method="post" id="send-invitation-form">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Invite for Job</h5>
+                        <button type="button" data-bs-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="alert alert-danger" role="alert" id="error" style="display:none;"></div>
+                        <div class="alert alert-success" role="alert" id="success" style="display:none;"></div>
+                        <div class="private-message-section">
+                            <div class="profile-section">
+                                <img src="<%=baseURL%>/assets/images/avatar.png" alt="" id="post-a-job-profile-section" height="60px" width="60px">
+                                <div class="freelancer-name">
+                                    <h5 class="fname">Anton K.</h5>
+                                </div>
+                            </div>
+                            <div class="private-message">
+                                <div class="form-group">
+                                    <div for="">Message</div>
+                                    <textarea type="text" class="form-control" required placeholder="Hello!
+I'd like to personally invite you to aplly to my job.
+Please review the job post and apply if you're available" name="message_for_freelancer" id="message_for_freelancer" rows="12"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" name="fid" hidden id="fid">
+                        <div class="choose-project-invite">
+                            <div class="form-group">
+                                <input type="radio" name="project" id="existingproject">
+                                <span class="pl-2">Invite to an existing job</span>
+                                <select name="chooseproject" id="chooseproject" class="form-control mt-2">
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <a href="" class="move-to-create-project-invite"><input type="radio" name="project" id="createajob">
+                                    <span for="" class="pl-2">Create a new job</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" id="send-invitation-msg">Send Invitation Message</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="invitetoalreadyhiredFreelancer" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <form method="post" id="job-detail-send-invitation-form">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Invite for Job</h5>
+                        <button type="button" data-bs-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="alert alert-danger" role="alert" id="error" style="display:none;"></div>
+                        <div class="alert alert-success" role="alert" id="success" style="display:none;"></div>
+                        <div class="private-message-section">
+                            <div class="profile-section">
+                                <img alt="" id="job-detail-freelancer-avatar" height="60px" width="60px">
+                                <div class="freelancer-name">
+                                    <h5 class="job-detail-page-fname"></h5>
+                                </div>
+                            </div>
+                            <div class="private-message">
+                                <div class="form-group">
+                                    <div for="">Message</div>
+                                    <textarea type="text" class="form-control" required placeholder="Hello!
+I'd like to personally invite you to apply to my job.
+Please review the job post and apply if you're available" name="job_detail_page_message_for_freelancer" id="job_detail_page_message_for_freelancer" rows="12"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" name="job_detail_page_fid" hidden id="job-detail-page-fid">
+                        <input type="hidden" name="job_detail_page_pid" hidden id="job-detail-page-pid">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Send Invitation Message</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <%- include('../layouts/footer.ejs') %>

@@ -1,0 +1,134 @@
+<%- include('../layouts/header.ejs') %>
+    <div class="body-wrapper">
+        <div class="bodywrapper__inner">
+            <div class="row">
+                <div class="col-lg-8 my-4">
+                    <input type="search" name="searchInManagingProject" id="searchInManagingProject" class="form-control" placeholder="Search Projects">
+                </div>
+                <div class="col-lg-4 my-4">
+                    <div class="filter-section d-flex align-items-center">
+                        <select name="project_type" id="project_type" class="mr-3">
+                            <option value="0">Choose Project Type</option>
+                            <option value="fixed">Fixed Projects</option>
+                            <option value="hourly">Hourly Projects</option>
+                            <option value="local">Local Projects</option>
+                        </select>
+                        <div class="show-no-records-mp d-flex align-items-center">
+                            <div class="mr-3">Show: </div>
+                            <select name="numberofrows" id="numberofrows">
+                                <option value="10">10</option>
+                                <option value="20">20</option>
+                                <option value="30">30</option>
+                                <option value="40">40</option>
+                                <option value="50">50</option>
+                            </select>
+                        </div>
+                        <div class="filter-managing-project d-flex align-items-center ml-3">
+                            <div class="mr-3">View: </div>
+                            <select name="showrecords" id="">
+                                <option value="all">All</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="card b-radius--10 ">
+                        <div class="card-body p-0">
+                            <div class="table-responsive--md  table-responsive">
+                                <table class="table table--light style--two">
+                                    <thead>
+                                        <tr>
+                                            <th>Title</th>
+                                            <th>Total Bids</th>
+                                            <th>Average Bid</th>
+                                            <th>My Bid</th>
+                                            <th>Bid Placed</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="manage-project-table">
+                                        <% for(var i=0; i < result.length; i++) { %>
+                                            <tr style="cursor: pointer;">
+                                                <td onclick="OpenProject('<%=result[i].id %>')">
+                                                    <%= result[i].title %>
+                                                </td>
+                                                <td onclick="OpenProject('<%=result[i].id %>')">
+                                                    <%= result[i].bid_stats.bid_count %>
+                                                </td>
+                                                <td onclick="OpenProject('<%=result[i].id %>')">
+                                                    <%= Math.floor(result[i].bid_stats.bid_avg) %>
+                                                </td>
+                                                <td onclick="OpenProject('<%=result[i].id %>')">
+                                                    <%= result[i].budget.minimum %>
+                                                </td>
+                                                <td onclick="OpenProject('<%=result[i].id %>')">
+                                                    <%= (result[i].mybid != 0) ? "yes" : "no" %>
+                                                </td>
+                                                <td data-label="Action">
+                                                    <a class="icon-btn btn--primary ml-1 addBtn" id="updateProject_<%=result[i].id %>" onclick="updateProject('<%=result[i].id %>')"><i class="la la-pen" style="color: white;"></i></a>
+                                                    <a href="/managingproject/delete/<%= result[i].id %>" class="icon-btn btn--danger ml-1 SiteDelete"><i class="las la-trash"></i></a>
+                                                </td>
+                                            </tr>
+                                            <% } %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Update Project</h5>
+                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/managingproject/update/" method="post">
+                                    <input type="hidden" name="project_id" id="project_id" class="form-control">
+                                    <div class="form-group">
+                                        <label for="">Title</label>
+                                        <input type="text" name="project_title" id="project_title" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Min Budget</label>
+                                        <input type="number" name="min_budget" id="min_budget" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Max Budget</label>
+                                        <input type="number" name="max_budget" id="max_budget" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Description</label>
+                                        <textarea rows="7" type="text" name="description" id="description" class="form-control"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Skill</label>
+                                        <select id="multiple" name="skills" class="input-group js-select2-multi js-states form-control " multiple>
+                                           
+                                        </select>
+                                        <!-- <input type="text" name="skills" id="skills" class="form-control"> -->
+                                    </div>
+                                    <!-- <div class="form-group">
+                                        <label for="">Country</label>
+                                        <input type="text" name="upd_country" id="upd_country" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">State</label>
+                                        <input type="text" name="upd_state" id="upd_state" class="form-control">
+                                    </div> -->
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <%- include('../layouts/footer.ejs') %>

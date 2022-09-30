@@ -1,0 +1,17 @@
+<%- include('../layouts/header.ejs') %>
+    <div class="body-wrapper">
+        <div class="bodywrapper__inner">
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <h2><b>Do you want to join the team of <b style="text-transform: capitalize;"><%= name%></b> ?</b>
+                    </h2>
+                    <div class="team-status mt-4">
+                        <input type="hidden" name="tokentoacceptorreject" class="tokentoacceptorreject" value="<%= token%>">
+                        <button class="btn btn-success mr-2 team-join-status-btn">Accept</button>
+                        <button class="btn btn-danger ml-2 team-join-status-btn">Reject</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('../layouts/footer.ejs') %>

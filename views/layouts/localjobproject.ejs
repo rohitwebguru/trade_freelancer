@@ -1,0 +1,77 @@
+<%- include('../layouts/header.ejs') %>
+    <div class="body-wrapper">
+        <div class="bodywrapper__inner">
+            <a href="/managingproject" class="btn btn-sm btn--primary icon-btn mb-3"><i class="fa fa-fw fa-reply"></i>Back</a>
+        </div>
+        <form action="/localjobproject" method="post">
+            <div class="row">
+                <input type="hidden" name="access_token" class="access_token" id="access_token" value="<%- access_token %>" />
+
+                <div class="col-md-6 mb-4">
+                    <label for="input-localjobproject-title">Title</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="input-localjobproject-title" value="" name="title" placeholder="Mow my lawn">
+                        <div class="invalid-feedback">Enter Title</div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <label for="input-localjobproject-budget">Minimum Budget</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="input-localjobproject-budget" value="" name="minbudget" placeholder="Should be greater than $50 AUD.">
+                        <div class="invalid-feedback">Enter Minimum Budget</div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <label for="input-localjobproject-budget">Maximum Budget</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="input-localjobproject-budget" value="" name="maxbudget" placeholder="Should be lesser than $100 AUD.">
+                        <div class="invalid-feedback">Enter Maximum Budget</div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="input-group">
+                        <label for="input-localjobproject-description">Description</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="input-localjobproject-description" value="" name="description" placeholder="The grass in my yard is very long and needs mowing.">
+                            <div class="invalid-feedback">Enter Description</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <label for="input-localjobproject-skill">Skill</label>
+                    <select id="multiple" name="skill" required class="input-group js-select2-multi js-states form-control" multiple>
+                        <% if((jobs_results!= undefined)) { %>
+                            <% jobs_results.forEach(function(jobs_result) { %>
+                                <option value="<%- jobs_result.id %>"><%- jobs_result.name %></option>
+                            <% }); %>
+                        <% } else { %><p>no data uploaded</p> <% } %>
+                    </select>
+                </div>
+                <div class="col-md-5 mb-4">
+                    <label for="input-localjobproject-country">Country</label>
+                    <select id="country" name="country" class="form-control"></select>
+                </div>
+                <div class="col-md-5 md-4">
+                    <label for="input-localjobproject-state">State</label>
+                    <select name="state" id="state" class="form-control"></select>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <label for="input-localjobproject-input_currency">Currency</label>
+                    <select name="input_currency" required class="input-group form-control">
+                        <% if((currency_results.currencies!= undefined)) { %>
+                            <% currency_results.currencies.forEach(function(currency) { %>
+                                <option value="<%- currency.id %>"><%- currency.name %></option>
+                            <% }); %>
+                        <% } else { %><p>no data uploaded</p> <% } %>
+                    </select>
+                </div>
+                <input type="hidden" name="lat" id="lat">
+                <input type="hidden" name="lon" id="lon">
+
+                <div class="col-md-12 mb-4">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <%- include('../layouts/footer.ejs') %>

@@ -1,0 +1,283 @@
+<%- include('../layouts/header.ejs') %>
+    <div class="body-wrapper">
+        <div class="bodywrapper__inner">
+            <div class="row">
+                <% if(user.role_id == 2){ %>
+                    <div class="col-2 my-3">
+                        <a data-toggle="modal" data-target="#chooseproject_type" class="btn btn-sm btn--primary box--shadow1 text--small addBtn mt-1" style="color: white;"><i class="fa fa-fw fa-plus"></i>Add New</a>
+                    </div>
+                    <% } %>
+                        <div class="col-lg-12">
+                            <div class="card b-radius--10 ">
+                                <div class="search-job-posting p-4">
+                                    <div class="row d-flex">
+                                        <div class="col-lg-8">
+                                            <div id="valued-display" class="input-group mb-3">
+                                                <input type="text" class="form-control search-job-postings-addon2" placeholder="Search job postings" aria-label="Search job postings" id="search-job-postings-addon2">
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-secondary" type="button"><i class='fas fa-search'></i></button>
+                                                </div>
+                                            </div>
+                                            <div id="clientfilters-add"></div>
+                                        </div>
+                                        <% if(user.role_id == 2){ %>
+                                            <div class="col-lg-2">
+                                                <button onclick="filterstoggleclients()" style="color: #4C4CA5;font-weight: 600;border: 1px solid #dfdddd;background-color: transparent;outline: 0;padding: 5px 20px;border-radius: 25px;margin-left: 10px;"><i class="fas fa-sliders-h mr-2"></i>Filters</button>
+                                            </div>
+                                            <div id="clientfilters" style="width: 100%">
+                                                <div class="col-lg-4">
+                                                    <label class="text-color">Visibility</label>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="All" checked>
+                                                        <label class="form-check-label" for="flexRadioDefault1">All</label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="Invite-only">
+                                                        <label class="form-check-label" for="flexRadioDefault2">Invite-only</label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3" value="Public">
+                                                        <label class="form-check-label" for="flexRadioDefault3">public</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <label class="text-color">Status</label>
+                                                    <div class="icheck-primary d-flex">
+                                                        <input type="checkbox" id="checkboxPrimary1" value="All" name='checkbox' checked>
+                                                        <label for="checkboxPrimary1"> All </label>
+                                                    </div>
+                                                    <div class="icheck-primary d-flex">
+                                                        <input type="checkbox" name='checkbox' value="Drafts" id="checkboxPrimary2">
+                                                        <label for="checkboxPrimary2"> Drafts </label>
+                                                    </div>
+                                                    <div class="icheck-primary d-flex">
+                                                        <input type="checkbox" name='checkbox' value="Open" id="checkboxPrimary3">
+                                                        <label for="checkboxPrimary3"> Open </label>
+                                                    </div>
+                                                    <div class="icheck-primary d-flex">
+                                                        <input type="checkbox" name='checkbox' value="Filled" id="checkboxPrimary4">
+                                                        <label for="checkboxPrimary4"> Filled </label>
+                                                    </div>
+                                                    <div class="icheck-primary d-flex">
+                                                        <input type="checkbox" name='checkbox' value="Closed" id="checkboxPrimary5">
+                                                        <label for="checkboxPrimary5"> Closed </label>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <label class="text-color">Type</label>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="flexRadioDefault1" id="flexRadioDefault4" value="All" checked>
+                                                        <label class="form-check-label" for="flexRadioDefault4">All</label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="flexRadioDefault1" id="flexRadioDefault5" value="Fixed-price">
+                                                        <label class="form-check-label" for="flexRadioDefault5">Fixed-price</label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="flexRadioDefault1" id="flexRadioDefault6" value="Hourly">
+                                                        <label class="form-check-label" for="flexRadioDefault6">Hourly</label>
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <% } else if(user.role_id == 3){ %>
+                                                <div class="col-lg-4">
+                                                    <button onclick="filterstogglefreelancer()" style="color: #4C4CA5;font-weight: 600;border: 1px solid #dfdddd;background-color: transparent;outline: 0;padding: 5px 20px;border-radius: 25px;margin-left: 10px;"><i class="fas fa-sliders-h mr-2"></i>Filters</button>
+                                                </div>
+                                                <div id="freelancerfilters" style="width: 100%">
+                                                    <div class="col-lg-4">
+                                                        <label class="text-color">Contract Type</label>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input contract_type" type="radio" name="contract_type" id="flexRadioDefault1" value="all" checked>
+                                                            <label class="form-check-label" for="flexRadioDefault1">All</label>
+                                                        </div>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input contract_type" type="radio" name="contract_type" value="hourly" id="flexRadioDefault2">
+                                                            <label class="form-check-label" for="flexRadioDefault2">Hourly</label>
+                                                        </div>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input contract_type" type="radio" name="contract_type" value="fixed" id="flexRadioDefault3">
+                                                            <label class="form-check-label" for="flexRadioDefault3">Fixed-Price</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <label class="text-color">Contract Status</label>
+                                                        <!-- <div class="icheck-primary d-flex">
+                                            <input type="checkbox" id="checkboxPrimary1" value="All" name='checkbox' checked>
+                                            <label for="checkboxPrimary1"> All </label>
+                                        </div> -->
+                                                        <!-- <div class="icheck-primary d-flex">
+                                            <input type="checkbox" name='checkbox' value="Pending" id="checkboxPrimary2">
+                                            <label for="checkboxPrimary2"> Pending </label>
+                                        </div> -->
+                                                        <div class="icheck-primary d-flex">
+                                                            <input type="checkbox" name='contract_status' value="active" id="checkboxPrimary3">
+                                                            <label for="checkboxPrimary3"> Active </label>
+                                                        </div>
+                                                        <div class="icheck-primary d-flex">
+                                                            <input type="checkbox" name='contract_status' value="ended" id="checkboxPrimary4">
+                                                            <label for="checkboxPrimary4"> Ended </label>
+                                                        </div>
+                                                        <!-- <div class="icheck-primary d-flex">
+                                            <input type="checkbox" name='checkbox' value="Paused" id="checkboxPrimary5">
+                                            <label for="checkboxPrimary5"> Paused </label>
+                                        </div> -->
+                                                    </div>
+                                                    <div class="col-lg-4" style="display:none;">
+                                                        <label class="text-color">Milestone Status</label>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="radio" name="flexRadioDefault4" id="flexRadioDefault4" checked>
+                                                            <label class="form-check-label" for="flexRadioDefault4">All</label>
+                                                        </div>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="radio" name="flexRadioDefault5" id="flexRadioDefault5">
+                                                            <label class="form-check-label" for="flexRadioDefault5">Active</label>
+                                                        </div>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="radio" name="flexRadioDefault6" id="flexRadioDefault6">
+                                                            <label class="form-check-label" for="flexRadioDefault6">Awaiting funding</label>
+                                                        </div>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="radio" name="flexRadioDefault6" id="flexRadioDefault6">
+                                                            <label class="form-check-label" for="flexRadioDefault6">Payment requested</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <% } %>
+                                    </div>
+                                </div>
+                                <div class="card-header p-4" id="client-postings">
+                                    <div class="card-heading">
+                                        <h3>My Jobs</h3>
+                                    </div>
+                                </div>
+                                <div class="card-body p-0" id="clients-all-projects">
+                                    <% if(result != undefined){
+                                        for(var i=0; i < result.length; i++) {
+                                            if(user.role_id == 2){ %>
+                                                <div class="project-box p-4">
+                                                    <div class="project-title mb-3">
+                                                        <% if(is_member==1) { %>
+                                                            <h3>
+                                                                <%= result[i].title %>
+                                                            </h3>
+                                                        <% }else{ %>
+                                                        <a href="jobdetail?project_id=<%= result[i].id %>"><h3>
+                                                            <%= result[i].title %>
+                                                        </h3>
+                                                        </a>
+                                                        <% } %>
+                                                    </div>
+                                                    <div class="project-description">
+                                                        <div class="project-info" style="color: #3c3c3c;display: flex;flex-direction: column;">
+                                                            <div class="project_type">
+                                                                <%= result[i].type %> - price
+                                                            </div>
+                                                            <div class="posted_on">
+                                                                Posted on:
+                                                                <% var date = result[i].created_at %>
+                                                                    <%= date.toString().substr(4,12) %>
+                                                            </div>
+                                                        </div>
+                                                        <div class="project-proposal-info">
+                                                            <% if(user.role_id == 3) { %>
+                                                                <div class="project-proposal">
+                                                                    <a href="/messages" class="btn btn-primary">Send Message</a>
+                                                                </div>
+                                                                <div class="form-group change-project-status-freelancers-side">
+                                                                    <select name="change-project-status-freelancers-side" id="changeProjectStatusAtFreelancerside" class="form-control" data-project_id='<%= result[i].project_id%>'>
+                                                                        <option value="0">Change Project Status</option>
+                                                                        <option value="1">Close</option>
+                                                                        <option value="2">End</option>
+                                                                    </select>
+                                                                </div>
+                                                                <% } %>
+                                                                
+                                                                <% if(is_member==1) { %>
+                                                                        <% if(result[i].status == 1) { %>
+                                                                            Approve
+                                                                        <% }else if(result[i].status == 2){ %>
+                                                                            Decline
+                                                                        <% }else{ %>
+                                                                            Created
+                                                                        <% } %>
+                                                                <% } else { %>
+                                                                <select name="myjobs_project_status" data-pid="<%= result[i].project_id %>" id="myjobs_project_status" class="form-control mr-2 myjobs_project_status">
+                                                                    <option value="">Please Select</option>
+                                                                    <option value="close">Close</option>
+                                                                    <option value="end">End</option>
+                                                                </select>
+                                                                <% } %>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            <% }else{ %>
+                                                <div class="project-box p-4">
+                                                    <div class="project-title mb-3">
+                                                        <h3>
+                                                            <%= result[i].title %>
+                                                        </h3>
+                                                    </div>
+                                                    <div class="project-description">
+                                                        <div class="project-info" style="color: #3c3c3c;display: flex;flex-direction: column;">
+                                                            <div class="project_type">
+                                                                <%= result[i].type %> - price
+                                                            </div>
+                                                            <div class="posted_on">
+                                                                Posted on:
+                                                                <% var date = result[i].created_at %>
+                                                                    <%= date.toString().substr(4,12) %>
+                                                            </div>
+                                                        </div>
+                                                        <div class="project-proposal-info">
+                                                            <% if(user.role_id == 3) { %>
+                                                                <div class="project-proposal">
+                                                                    <a href="/messages" class="btn btn-primary">Send Message</a>
+                                                                </div>
+                                                                <div class="form-group change-project-status-freelancers-side">
+                                                                    <select name="change-project-status-freelancers-side" id="changeProjectStatusAtFreelancerside" class="form-control" data-project_id='<%= result[i].project_id%>'>
+                                                                        <option value="0">Change Project Status</option>
+                                                                        <option value="1">Close</option>
+                                                                        <option value="2">End</option>
+                                                                    </select>
+                                                                </div>
+                                                                <% } %>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            <% }
+                                        }
+                                    } %>
+                                </div>
+                            </div>
+                        </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="chooseproject_type">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Choose Project Type </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="project_type">
+                            <a class="choose_project_type" href="/addproject">General</a>
+                            <a class="choose_project_type" href="/hiremeproject">Hire me</a>
+                            <a class="choose_project_type" href="/localjobproject">Local Job Project</a>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%- include('../layouts/footer.ejs') %>

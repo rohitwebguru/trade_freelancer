@@ -1,0 +1,121 @@
+<%- include('../layouts/header.ejs') %>
+
+    <div class="body-wrapper">
+        <div class="bodywrapper__inner">
+            <a href="/manageoperations" class="btn btn-sm btn--primary icon-btn mb-3"><i class="fa fa-fw fa-reply"></i>Back</a>
+            <form id="updateprojectopeation" method="post">
+                <input type="hidden" name="access_token" class="access_token" id="access_token" value="<%- access_token %>" />
+                <input type="hidden" name="project_id" class="project_id" id="project_id" value="<%- project_id %>" />
+                <% if(result.type=='local'){%>
+                <input type="hidden" name="operation_country_id" class="operation_country_id" id="operation_country_id" value="<%- JSON.parse(result.location).country.name %>" />
+                <input type="hidden" name="operation_city_id" class="operation_city_id" id="operation_city_id" value="<%- JSON.parse(result.location).city %>" />
+                <% } %>
+                <input type="hidden" name="type" class="type" id="type" value="<%- result.type %>" />
+                <b>Type:</b> <%= result.type %>
+                <div class="row">
+                    <div class="col-md-12" id="fixed_hourly">
+                        <div class="project-details">
+                            <div class="col-md-6 mb-4">
+                                <label for="input_title">Title</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="input_title" value="<%= result.title %>" name="input_title" placeholder="Fix my PHP website" required>
+                                    <div class="invalid-feedback">Enter Title</div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-4">
+                                <label for="input_budget" class="project_budget_add">Minimum Budget</label>
+                                <div class="input-group has_append pr-2">
+                                    <input type="number" class="form-control" id="input_budget_min" value="<%-JSON.parse(result.budget).minimum %>" name="input_budget_min" placeholder="Minimum Value" required>
+                                    <div class="invalid-feedback">Enter Budget</div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-4">
+                                <label for="input_budget" class="project_budget_add">Maximum Budget</label>
+                                <div class="input-group has_append">
+                                    <input type="number" class="form-control" id="input_budget_max" value="<%-JSON.parse(result.budget).maximum %>" name="input_budget_max" placeholder="Maximum Value" required>
+                                    <div class="invalid-feedback">Enter Budget</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-details">
+                            <div class="col-md-6 mb-4">
+                                <div class="input-group">
+                                    <label for="input_description">Description</label>
+                                    <div class="input-group">
+                                        <textarea type="text" class="form-control" id="input_description" required name="input_description" placeholder="I wrote a small website in PHP but it does not work. I someone to fix it."><%= result.description %></textarea>
+                                        <div class="invalid-feedback">Enter Description</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <label for="input-skill">Skill</label>
+                                <select id="multiple" name="skill_fixed" required class="input-group js-select2-multi js-states form-control" multiple>
+                                    <% if((jobs_results!= undefined)) { %>
+                                        <% jobs_results.forEach(function(jobs_result) { %>
+                                            <% JSON.parse(result.jobs).forEach((val,i) => { %>
+                                                <% if(val.id == jobs_result.id) { %>
+                                                    <option value="<%- jobs_result.id %>" selected><%- jobs_result.name %></option>
+                                                <% }else{ %>
+                                                    <option value="<%- jobs_result.id %>"><%- jobs_result.name %></option>
+                                                <% } %>
+                                            <% }) %>
+                                        <% }); %>
+                                    <% } else { %><p>no data uploaded</p> <% } %>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="project-details">
+                            <% if(result.type=='local'){%>
+                            <div class="col-md-5 mb-4">
+                                <label for="input-localjobproject-country">Country</label>
+                                <select id="country2" name="country" class="form-control">
+                                </select>
+                            </div>
+                            <div class="col-md-5 md-4">
+                                <label for="input-localjobproject-state">State</label>
+                                <select name="state" id="state2" class="form-control state2"></select>
+                            </div>
+                            <input type="hidden" name="lat" id="lat" class="lat" value="<%- JSON.parse(result.location).latitude %>">
+                            <input type="hidden" name="lon" id="lon" class="lon" value="<%-JSON.parse(result.location).longitude %>">
+                            <% } %>
+                            <div class="col-md-2 mb-4">
+                                <label for="input-localjobproject-input_currency">Currency</label>
+                                <select name="input_currency" required class="input-group form-control">
+                                    <% if((currency_results.currencies!= undefined)) { %>
+                                        <% currency_results.currencies.forEach(function(currency) { %>
+                                            <% if(JSON.parse(result.currency).id == currency.id) { %>
+                                                <option value="<%- currency.id %>" selected><%- currency.name %></option>
+                                            <% }else{ %>
+                                                <option value="<%- currency.id %>"><%- currency.name %></option>
+                                            <% } %>
+                                        <% }); %>
+                                    <% } else { %><p>no data uploaded</p> <% } %>
+                                </select>
+                            </div>
+                            <% if(result.type=='hourly'){%>
+                            <div class="col-md-6 mb-4">
+                                <label for="input-hourly_project_info">Hours Per Week</label>
+                                <input type="text" name="hoursPerWeek" id="hoursPerWeek" value="<%- JSON.parse(result.hourly_project_info).commitment.hours %>" class="form-control">
+                            </div>
+                            <% } %>
+                        </div>
+                    </div>
+                    <div class="col-md-12" id="project_btn">
+                        <div class="project-details">
+                            <div class="col-md-6 mb-4">
+                                <button type="submit" id="update_project_operation" class="btn btn-primary">Approve</button>
+                                <button class="btn btn-danger project-approval-status-btn" data-status="2" data-pid="<%= project_id %>" data-pstatus="<%= result.type %>">Reject</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="col-md-12" id="project_btn">
+                <div class="project-details">
+                    <div class="col-md-6 mb-4">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('../layouts/footer.ejs') %>

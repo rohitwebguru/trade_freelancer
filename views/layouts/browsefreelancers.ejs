@@ -1,0 +1,319 @@
+<%- include('../layouts/header.ejs') %>
+
+    <div class="body-wrapper">
+        <div class="bodywrapper__inner" id="dashboard">
+            <div class="row">
+                <div class="col-lg-2">
+                    <div class="filter-section">
+                        <div class="filter-section">
+                            <div class="filter-heading">
+                                <h2>Filters</h2>
+                            </div>
+                            <div class="filter-by-hourly-rate my-4">
+                                <div class="filter-by-rate-heading">
+                                    <h3>Hourly rate</h3>
+                                </div>
+                                <div class="hourly-rate d-flex mt-3">
+                                    <div class="mr-2">
+                                        <div>min</div>
+                                        <input type="text" class="min-hourly-rate form-control" placeholder="$0">
+                                    </div>
+                                    <span>to</span>
+                                    <div class="ml-2">
+                                        <div>max</div>
+                                        <input type="text" class="max-hourly-rate form-control" placeholder="$80">
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="filter-by-skill my-4">
+                                <div class="filter-by-skill-heading">
+                                    <h3>Skills</h3>
+                                </div>
+                                <div class="form-group">
+                                    <!-- <input type="search" name="search_skills" id="search_skills" class="form-control"> -->
+                                    <select id="search_skills" name="search_freelancer_with_search_skills" required class="input-group js-select2-multi js-states form-control search_freelancer_with_search_skills search_skills" multiple>
+                                        <% if((jobs_results!= undefined)) { %>
+                                            <% jobs_results.forEach(function(jobs_result) { %>
+                                                <option value="<%- jobs_result.id %>"><%- jobs_result.name %></option>
+                                            <% }); %>
+                                        <% } else { %><p>no data uploaded</p> <% } %>
+                                    </select>
+                                </div>
+                                <!-- <div class="form-group">
+                                    <input type="checkbox" name="entry" id="entry-level-exp" value="Web Design"> Web Design
+                                </div>
+                                <div class="form-group">
+                                    <input type="checkbox" name="entry" id="entry-level-exp" value="Logo Design"> Logo Design
+                                </div>
+                                <div class="form-group">
+                                    <input type="checkbox" name="entry" id="entry-level-exp" value="Mobile App Development"> Mobile App Development
+                                </div>
+                                <div class="form-group">
+                                    <input type="checkbox" name="entry" id="entry-level-exp" value="Data Entry"> Data Entry
+                                </div>
+                                <div class="form-group">
+                                    <input type="checkbox" name="entry" id="entry-level-exp" value="Article Writing"> Article Writing
+                                </div> -->
+                            </div>
+                            <hr>
+                            <div class="filter-by-countries my-4">
+                                <div class="filter-by-countries-heading">
+                                    <h3>Countries</h3>
+                                </div>
+                                <select name="search_freelancer_with_specific_countries" required class="input-group js-select2-multi js-states form-control search_freelancer_with_specific_countries" multiple>
+                                        <% if((countries!= undefined)) { console.log(countries) %>
+                                            <% countries.forEach(function(country) { %>
+                                                <option value="<%- country.name %>"><%- country.name %></option>
+                                            <% }); %>
+                                        <% } else { %><p>no data uploaded</p> <% console.log("countries") } %>
+                                </select>
+                            </div>
+                            <hr>
+                            <div class="filter-by-Online my-4">
+                                <div class="filter-by-Online-heading">
+                                    <h3>Online</h3>
+                                </div><br>
+                                <div class="form-group">
+                                    <div class="custom-control custom-switch">
+                                        <input type="checkbox" class="custom-control-input" id="onlinefreelancers">
+                                        <label class="custom-control-label" for="onlinefreelancers">Online Freelancers only</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="filter-by-rating my-4">
+                                <div class="filter-by-Online-heading">
+                                    <h3>Rating</h3>
+                                </div>
+                                <div class="rating" id="get_rating">
+                                    <input type="radio" id="star5" name="rating" value="5" /><label class="full" for="star5" title="Awesome - 5 stars"></label>
+                                    <input type="radio" id="star4half" name="rating" value="4.5" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+                                    <input type="radio" id="star4" name="rating" value="4" /><label class="full" for="star4" title="Pretty good - 4 stars"></label>
+                                    <input type="radio" id="star3half" name="rating" value="3.5" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label>
+                                    <input type="radio" id="star3" name="rating" value="3" /><label class="full" for="star3" title="Meh - 3 stars"></label>
+                                    <input type="radio" id="star2half" name="rating" value="2.5" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+                                    <input type="radio" id="star2" name="rating" value="2" /><label class="full" for="star2" title="Kinda bad - 2 stars"></label>
+                                    <input type="radio" id="star1half" name="rating" value="1.5" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label>
+                                    <input type="radio" id="star1" name="rating" value="1" /><label class="full" for="star1" title="Sucks big time - 1 star"></label>
+                                    <input type="radio" id="starhalf" name="rating" value="0.5" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+                                </div>
+                            </div>
+                            <hr style="display: inline-block">
+                            <div class="filter-by-review-rate my-4">
+                                <div class="filter-by-rate-heading">
+                                    <h3>Reviews</h3>
+                                </div>
+                                <div class="review-rate d-flex mt-3">
+                                    <div class="mr-1">
+                                        <div>min</div>
+                                        <input type="text" class="min-review form-control" placeholder="0">
+                                    </div>
+                                    <span style="width: 50px">to</span>
+                                    <div class="ml-1">
+                                        <div>max</div>
+                                        <input type="text" class="max-review form-control" placeholder="500+">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-10">
+                    <div class="card b-radius--10 ">
+                        <div class="card-header p-4">
+                            <div class="search-saved-filter d-flex">
+                                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link active" id="pills-search-tab" data-toggle="pill" href="#pills-search" role="tab" aria-controls="pills-search" aria-selected="true">Search</a>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link" id="pills-myhires-tab" data-toggle="pill" href="#pills-myhires" role="tab" aria-controls="pills-myhires" aria-selected="false">My Hires</a>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link" id="pills-saved-tab" data-toggle="pill" href="#pills-saved" role="tab" aria-controls="pills-saved" aria-selected="false">Saved</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <hr>
+                            <div class="tab-content" id="pills-tabContent">
+                                <div class="tab-pane fade show active" id="pills-search" role="tabpanel" aria-labelledby="pills-search-tab">
+                                    <div class="search-job">
+                                        <div class="row d-flex">
+                                            <div class="col-sm-10">
+                                                <!-- <input type="text" class="form-control" placeholder="Skills: PHP, Javascript, Reactjs, Expressjs"> -->
+                                                <select id="multiple" name="search_freelancer_with_specified_skill" required class="input-group js-select2-multi js-states form-control search_skill" multiple>
+                                                    <% if((jobs_results!= undefined)) { %>
+                                                        <% jobs_results.forEach(function(jobs_result) { %>
+                                                            <option value="<%- jobs_result.id %>"><%- jobs_result.name %></option>
+                                                        <% }); %>
+                                                    <% } else { %><p>no data uploaded</p> <% } %>
+                                                </select>
+                                                <span style="color: #4C4CA5;font-weight: 600;">Advanced Search</span>
+                                            </div>
+                                            <div class="col-sm-2 ">
+                                                <button style="color: #4C4CA5;font-weight: 600;border: 1px solid #dfdddd;background-color: transparent;outline: 0;padding: 5px 20px;border-radius: 25px;margin-left: 10px;; ">Save Search</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="search-job mt-3 px-3">
+                                        <div class="row d-flex justify-content-between">
+                                            <div class="jobs-found">
+                                                <b><%= totalfreelancers %></b> freelancers found
+                                            </div>
+                                            <div class="sort-feature d-flex">
+                                                <div class="sort-group">
+                                                    <label for="sort_jobs"><b> Sort: </b></label>
+                                                    <select name="sort_jobs" id="sort_jobs">
+                                                        <option value="Newest">Newest</option>
+                                                        <option value="Popular">Popular</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-none spinner-border text-primary" role="status">
+                                        <span class="sr-only">Loading...</span>
+                                    </div>
+                                    <div class="card-body p-0 " id="freelancers-list">
+                                        <% for(var i =0; i< freelancers.length; i++){ 
+                                            %>
+                                            <div class="freelancer-card">
+                                                <div class="freelancer-card-header">
+                                                    <div class="freelancer-profile">
+                                                        <div class="freelancer-profile-img">
+                                                            <% if(freelancers[i].avatar == null || freelancers[i].avatar == '') { %>
+                                                                <img src="<%=baseURL%>/assets/images/avatar.png" alt="" class="freelancer-profile-img">
+                                                                <% } else { %>
+                                                                    <img src="<%= freelancers[i].avatar_cdn%>" alt="" class="freelancer-profile-img">
+                                                                    <% } %>
+                                                        </div>
+                                                        <div class="freelancer-profile-info pl-2">
+                                                            <h5>
+                                                                <%= freelancers[i].username%>
+                                                            </h5>
+                                                            <p>
+                                                                <%= freelancers[i].display_name%>
+                                                            </p>
+                                                            <p>
+                                                                <%= freelancers[i].location.country.name%>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="saved-and-post-job-section">
+                                                        <div class="save-freelancer-btn" data-uid="<%= freelancers[i].id %>">
+                                                            <i class="far fa-heart save-freelancer-btn_<%= freelancers[i].id %>"></i>
+                                                        </div>
+                                                        <div class="invite-to-job-btn pl-2">
+                                                            <a data-fid="<%= freelancers[i].id %>" data-fname="<%= freelancers[i].username %>" data-avatar="<%=baseURL%>/assets/images/avatar.png" data-fpic="<%= freelancers[i].avatar_cdn%>">Invite to job</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <% } %>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="pills-myhires" role="tabpanel" aria-labelledby="pills-myhires-tab">
+                                    <% var userarr = Object.keys(hire_results.users).map((key) => [Number(key), hire_results.users[key]]);%>
+                                        <% userarr.forEach((val,i )=>{ %>
+                                            <div class="card-body p-0 " id="freelancer-hired-card">
+                                                <div class="freelancer-hiredcard">
+                                                    <div class="freelancer-hiredcard-header">
+                                                        <div class="freelancer-hiredprofile">
+                                                            <div class="freelancer-hiredprofile-img">
+                                                                <img src="<%= val[1].avatar_cdn %>" alt="" class="freelancer-hiredprofile-img freelancer-profile-img">
+                                                            </div>
+                                                            <div class="freelancer-hiredprofile-info pl-2">
+                                                                <h5>
+                                                                    <%= val[1].username%>
+                                                                </h5>
+                                                                <p>
+                                                                    <%= val[1].display_name%>
+                                                                </p>
+                                                                <p>
+                                                                    <%= val[1].location.country.name%>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <% }) %>
+                                </div>
+                                <div class="tab-pane fade" id="pills-saved" role="tabpanel" aria-labelledby="pills-saved-tab">
+                                    <div class="card-body p-0 " id="freelancers-saved-list">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="inviteforproject" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <form method="post" id="send-invitation-form">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Invite for Job</h5>
+                        <button type="button" data-bs-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="alert alert-danger" role="alert" id="error" style="display:none;"></div>
+                        <div class="alert alert-success" role="alert" id="success" style="display:none;"></div>
+                        <div class="private-message-section">
+                            <div class="profile-section">
+                                <img src="<%=baseURL%>/assets/images/avatar.png" alt="" id="post-a-job-profile-section" height="60px" width="60px">
+                                <div class="freelancer-name">
+                                    <h5 class="fname">Anton K.</h5>
+                                </div>
+                            </div>
+                            <div class="private-message">
+                                <div class="form-group">
+                                    <div for="">Message</div>
+                                    <textarea type="text" class="form-control" required placeholder="Hello!
+I'd like to personally invite you to aplly to my job.
+Please review the job post and apply if you're available" name="message_for_freelancer" id="message_for_freelancer" rows="12"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" name="fid" hidden id="fid">
+                        <div class="choose-project">
+                            <div class="form-group">
+                                <input type="radio" name="project" id="existingproject">
+                                <span class="pl-2">Invite to an existing job</span>
+                                <select name="chooseproject" id="chooseproject" class="form-control mt-2">
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <a href="" class="move-to-create-project-invite"><input type="radio" name="project" id="createajob">
+                                    <span for="" class="pl-2">Create a new job</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" id="send-invitation-msg">Send Invitation Message</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast">
+        <div class="toast-header">
+            Notification
+        </div>
+        <div class="toast-body">
+            Invite sent !
+        </div>
+    </div>
+
+
+    <%- include('../layouts/footer.ejs') %>

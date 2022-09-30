@@ -1,0 +1,90 @@
+<%- include('../layouts/header.ejs') %>
+
+    <div class="body-wrapper">
+        <div class="bodywrapper__inner">
+            <a href="/creatingproject" class="btn btn-sm btn--primary icon-btn mb-3"><i class="fa fa-fw fa-reply"></i>Back</a>
+            <form action="/api/addproject" method="post" id="" enctype="multipart/form-data">
+                <input type="hidden" name="access_token" class="access_token" id="access_token" value="<%- access_token %>" />
+                <div class="row">
+                    <div class="col-md-12">
+                        <select name="filter_site_project" id="filter_site_project" class="form-control mr-2" onchange="changeDDL()">
+                            <option value="">-- Select Project --</option>
+                            <option value="fixed">Fixed Project</option>
+                            <option value="hourly">Hourly Project</option>
+                        </select>
+                    </div>
+                    <div class="col-md-12" id="fixed_hourly" style="display:none;">
+                        <div class="project-details">
+                            <div class="col-md-6 mb-4">
+                                <label for="input_title">Title</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="input_title" value="" name="input_title" placeholder="Fix my PHP website" required>
+                                    <div class="invalid-feedback">Enter Title</div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-4 form-inline float-sm-right">
+                                <label for="input_budget" class="project_budget_add">Budget</label>
+                                <div class="input-group has_append pr-2">
+                                    <input type="number" class="form-control" id="input_budget_min" value="" name="input_budget_min" placeholder="Minimum Value" required>
+                                    <div class="invalid-feedback">Enter Budget</div>
+                                </div>
+                                <div class="input-group has_append">
+                                    <input type="number" class="form-control" id="input_budget_max" value="" name="input_budget_max" placeholder="Maximum Value" required>
+                                    <div class="invalid-feedback">Enter Budget</div>
+                                </div>
+                            </div>
+                            <div class="col-md-2 mb-4">
+                                <label for="input-localjobproject-input_currency">Currency</label>
+                                <select name="input_currency" required class="input-group form-control">
+                                    <% if((currency_results.currencies!= undefined)) { %>
+                                        <% currency_results.currencies.forEach(function(currency) { %>
+                                            <option value="<%- currency.id %>"><%- currency.name %></option>
+                                        <% }); %>
+                                    <% } else { %><p>no data uploaded</p> <% } %>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="project-details">
+                            <div class="col-md-6 mb-4">
+                                <div class="input-group">
+                                    <label for="input_description">Description</label>
+                                    <div class="input-group">
+                                        <textarea type="text" class="form-control" id="input_description" required value="" name="input_description" placeholder="I wrote a small website in PHP but it does not work. I someone to fix it."></textarea>
+                                        <div class="invalid-feedback">Enter Description</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <label for="input-skill">Skill</label>
+                                <select id="multiple" name="skill_fixed" required class="input-group js-select2-multi js-states form-control" multiple>
+                                    <% if((jobs_results!= undefined)) { %>
+                                        <% jobs_results.forEach(function(jobs_result) { %>
+                                            <option value="<%- jobs_result.id %>"><%- jobs_result.name %></option>
+                                        <% }); %>
+                                    <% } else { %><p>no data uploaded</p> <% } %>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12" id="project_hourly" style='display:none'>
+                        <div class="project-details">
+                            <div class="col-md-6 mb-4">
+                                <label for="input-hourly_project_info">Hours Per Week</label>
+                                <input type="text" name="hoursPerWeek" id="hoursPerWeek" class="form-control">
+                                <div class="text-danger">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12" id="project_btn" style="display:none;">
+                        <div class="project-details">
+                            <div class="col-md-6 mb-4">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <%- include('../layouts/footer.ejs') %>

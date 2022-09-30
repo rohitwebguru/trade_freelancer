@@ -1,0 +1,116 @@
+<%- include('../layouts/header.ejs') %>
+    <div class="body-wrapper-main">
+        <div class="bodywrapper__inner">
+            <div class="body-wrapper">
+                <a href="/roles" class="btn btn-sm btn--primary box--shadow1 text--small addBtn mt-1 mb-3"><i class="fa fa-fw fa-reply"></i>Back</a>
+                <form onsubmit="return false" method="post" name="alladdrolestype" id="alladdrolestype">
+                    <div class="row">
+                        <div class="col-md-12 mb-4">
+                            <label for="input-title">Title</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="role_title" value="" name="role_title" placeholder="Agent’s Users">
+                                <div class="invalid-feedback">Enter Title</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card b-radius--10 ">
+                                <div class="card-body p-0">
+                                    <div class="table-responsive--md  table-responsive" id="permission_module">
+                                        <table class="table style--two">
+                                            <thead>
+                                                <tr id="manage_sites">
+                                                    <td class="fw-bold cursor-pointer">Manage Projects:</td>
+                                                    <td class="d-flex justify-content-center"><i class="fas fa-angle-down arrow"></i></td>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="manage_sites_content">
+                                                <tr>
+                                                    <td>
+                                                        <label for="project_id">Add</label>
+                                                    </td>
+                                                    <td class="d-flex justify-content-center"><input type="checkbox" id="project_id_add" value="1" name="project_id[7][project_module][]"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label for="project_id">Edit</label></td>
+                                                    <td class="d-flex justify-content-center" id="update-7"><input type="checkbox" id="project_id_edit" value="2" name="project_id[7][project_module][]"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label for="project_id">Delete</label></td>
+                                                    <td class="d-flex justify-content-center" id="del-7"><input type="checkbox" id="project_id_delete" value="3" name="project_id[7][project_module][]"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label for="project_id">View</label></td>
+                                                    <td class="d-flex justify-content-center" id="edit-7"><input type="checkbox" id="project_id_view" value="4" name="project_id[7][project_module][]" checked="checked"></td>
+                                                </tr>
+                                            </tbody>
+                                            <thead>
+                                                <tr id="manage_sites">
+                                                    <td class="fw-bold cursor-pointer">Manage Payments:</td>
+                                                    <td class="d-flex justify-content-center"><i class="fas fa-angle-down arrow"></i></td>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="manage_payments_content">
+                                                <tr>
+                                                    <td>
+                                                        <label for="payment_id">Add</label>
+                                                    </td>
+                                                    <td class="d-flex justify-content-center"><input type="checkbox" id="payment_id_add" value="1" name="payment_id[7][payment_module][]"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label for="payment_id">Edit</label></td>
+                                                    <td class="d-flex justify-content-center" id="update-7"><input type="checkbox" id="payment_id_edit" value="2" name="payment_id[7][payment_module][]"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label for="payment_id">Delete</label></td>
+                                                    <td class="d-flex justify-content-center" id="del-7"><input type="checkbox" id="payment_id_delete" value="3" name="payment_id[7][payment_module][]"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label for="payment_id">View</label></td>
+                                                    <td class="d-flex justify-content-center" id="edit-7"><input type="checkbox" id="payment_id_view" value="4" name="payment_id[7][payment_module][]" checked="checked"></td>
+                                                </tr>
+                                            </tbody>
+                                            <thead>
+                                                <tr id="manage_sites">
+                                                    <td class="fw-bold cursor-pointer">Manage Reports:</td>
+                                                    <td class="d-flex justify-content-center"><i class="fas fa-angle-down arrow"></i></td>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="manage_report_content">
+                                                <tr>
+                                                    <td>
+                                                        <label for="report_id">Add</label>
+                                                    </td>
+                                                    <td class="d-flex justify-content-center"><input type="checkbox" id="report_id_add" value="1" name="report_id[7][report_module][]"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label for="report_id">Edit</label></td>
+                                                    <td class="d-flex justify-content-center" id="update-7"><input type="checkbox" id="report_id_edit" value="2" name="report_id[7][report_module][]"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label for="report_id">Delete</label></td>
+                                                    <td class="d-flex justify-content-center" id="del-7"><input type="checkbox" id="report_id_delete" value="3" name="report_id[7][report_module][]"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><label for="report_id">View</label></td>
+                                                    <td class="d-flex justify-content-center" id="edit-7"><input type="checkbox" id="report_id_view" value="4" name="report_id[7][report_module][]" checked="checked"></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <!-- table end -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 mt-4">
+                            <button id="submit_roles" type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <%- include('../layouts/footer.ejs') %>

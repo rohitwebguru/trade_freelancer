@@ -1,0 +1,33 @@
+
+<%- include('../layouts/header.ejs') %>
+    <div class="body-wrapper">
+        <div class="bodywrapper__inner">
+            <div class="row align-items-center mb-30 justify-content-between">
+                <h6 class="page-title">Fixed Project</h6>
+            </div>
+            <form action="" method="post" id="" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <label for="title">Title<span class="required">*</span></label>
+                        <input type="text" placeholder="admin" class="form-control" value="" name="title" id="title">
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <label for="title">Budget<span class="required">*</span></label>
+                        <input type="text" placeholder="between $250 and $500 AUD" class="form-control" value="" name="budget" id="budget">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 mb-4">
+                        <label for="description">Description<span class="required">*</span></label>
+                        <textarea rows="4" cols="50" placeholder="" class="form-control" value="" name="description" id="description"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 mb-4">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>        
+<%- include('../layouts/footer.ejs') %>

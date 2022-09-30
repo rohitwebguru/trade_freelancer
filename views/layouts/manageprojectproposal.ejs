@@ -1,0 +1,161 @@
+<%- include('../layouts/header.ejs') %>
+    <div class="body-wrapper">
+        <div class="bodywrapper__inner">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="card b-radius--10 ">
+                        <div class="card-body p-0">
+                            <div class="project-header">
+                                <h2>Project Details</h2>
+                                <h4>
+                                    $
+                                    <%= result.budget.minimum %> &nbsp;-&nbsp;
+                                        <%= result.budget.maximum %> USD
+                                </h4>
+                            </div>
+                            <hr>
+                            <div class="project-body">
+                                <div class="project-title">
+                                    <h3>
+                                        <%= result.title %>
+                                    </h3>
+                                    <br>
+                                </div>
+                                <div class="project-desc">
+                                    <p>
+                                        <%= result.description %>
+                                    </p>
+                                </div>
+                                <br>
+                                <div class="project-skill">
+                                    <h3>Skills Required</h3><br>
+                                    <div class="all-required-skills">
+                                        <% if(result.jobs!=undefined) { %>
+                                            <% var skillset = result.jobs %>
+                                                <% for(var j=0; j< skillset.length; j++) {%>
+                                                    <div class="required-skill">
+                                                        <%= skillset[j].name %>
+                                                    </div>
+                                                    <% }%>
+                                                        <% } %>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <% if(user.role_id == 3 && proposal != "" && proposal != null) { %>
+                        <div class="card b-radius--10 bidding-box">
+                            <div class="card-body p-0">
+                                <div class="bidding-header">
+                                    <h2>Place a Bid on this Project</h2>
+                                </div>
+                                <hr>
+                                <div class="mx-3 alert alert-danger" role="alert" id="error" style="display:none;"></div>
+                                <div class="mx-3 alert alert-success" role="alert" id="success" style="display:none;"></div>
+                                <div class="bidding-body">
+                                    <p>You will be able to edit your bid until the project is awarded to someone.</p><br>
+                                    <div class="bid-form">
+                                        <form id="placebidbyteamleader" onsubmit="return false;">
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label>Bid Amount</label>
+                                                        <input type="number" name="bid_amount" id="bid_amount" class="form-control" placeholder="3450" value="<%= proposal[0].amount %>">
+                                                        <input type="hidden" name="project_id" value="<%= result.id %>">
+                                                        <input type="hidden" name="proposal_id" value="<%= proposal[0].proposal_id %>">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label>This project will be delivered in: </label>
+                                                        <input type="number" name="numberOfDays" id="numberOfDays" class="form-control" placeholder="7" value="<%= proposal[0].period %>">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Describe your proposal: </label>
+                                                <textarea name="proposal" id="proposal" rows="10" class="form-control" placeholder="what makes you the best candidate for this project"><%= proposal[0].description %></textarea>
+                                            </div>
+                                            <button class="btn btn-success accept-bid-of-team-member">Accept</button>
+                                            <button class="btn btn-danger reject-bid-of-team-member" data-proposal_id="<%= proposal[0].proposal_id %>">Reject</button><br>
+                                            <span class="text-danger reject-bid-error-msg my-4"></span>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <% } %>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card b-radius--10 about-client-box">
+                        <div class="card-body p-0">
+                            <div class="about-client-header">
+                                <h4>About the Client</h4>
+                            </div>
+                            <hr>
+                            <div class="about-client-body">
+                                <div class="user-desc">
+                                    <div class="user-profile">
+                                        <div class="user-icon">
+                                            <% if(postedby.image == null || postedby.image == '') { %>
+                                                <img src="<%=baseURL%>/assets/images/avatar.png" alt="" height="40px" width="40px">
+                                                <% } else { %>
+                                                    <img src="<%=baseURL%>/avatars/<%= postedby.image %>" alt="">
+                                                    <% } %>
+                                        </div>
+                                        <div class="user-name ml-2">
+                                            <b>
+                                                <%= postedby.username %>
+                                            </b>
+                                        </div>
+                                    </div>
+                                    <div class="member-since my-3">
+                                        <p><b>🕐&nbsp;Member since:</b>
+                                            <% var date = new Date(postedby.registration_date) %>
+                                                <%= date.toDateString() %>
+                                        </p>
+                                    </div>
+                                    <div class="member-since my-3">
+                                        <p><b>📍&nbsp;Location:</b>
+                                            <%= postedby.location.country.name %>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card b-radius--10 bidding-box">
+                        <div class="card-body p-0">
+                            <div class="bidding-header">
+                                <h2>Client's recent history</h2>
+                            </div>
+                            <hr>
+                            <div class="bidding-body">
+                                <div class="b-radius--10 ">
+                                    <div class="p-0">
+                                        <% for(var i=0; i < recentjobs.length; i++) { %>
+                                            <div class="recent-jobs-header">
+                                                <div class="job-title">
+                                                    <h4>
+                                                        <%=recentjobs[i].title %>
+                                                    </h4>
+                                                    <p>No feedback given</p>
+                                                    <p class="to-freelancer">To freelancer: <span>Andrew L.</span></p>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <% } %>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('../layouts/footer.ejs') %>

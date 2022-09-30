@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png">
+        <link rel="icon" type="image/png" href="./assets/images/logoIcon/logo.png">
+        <title>
+        Freelancer Marketing
+        </title>
+        <link rel="dns-prefetch" href="//fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+        <link href="./assets/css/bootstrap.min.css" rel="stylesheet">
+        
+        <link href="./assets/css/line-awesome.min.css" rel="stylesheet">
+        <!-- Styles -->
+        <link href="./assets/css/app.css" rel="stylesheet">
+        <link href="./assets/css/custom.css" rel="stylesheet">
+    </head>
+    <body>
+        <!-- navbar-wrapper start -->
+        <nav class="navbar-wrapper">
+            <form class="navbar-search" onsubmit="return false;">
+                <button type="submit" class="navbar-search__btn">
+                    <i class="las la-search"></i>
+                </button>
+                <input type="search" name="navbar-search__field" id="navbar-search__field"
+                    placeholder="Search...">
+                <button type="button" class="navbar-search__close"><i class="las la-times"></i></button>
+
+                <div id="navbar_search_result_area">
+                    <ul class="navbar_search_result"></ul>
+                </div>
+            </form>
+
+            <div class="navbar__left">
+                <button class="res-sidebar-open-btn"><i class="las la-bars"></i></button>
+                <button type="button" class="fullscreen-btn">
+                    <i class="fullscreen-open las la-compress" onclick="openFullscreen();"></i>
+                    <i class="fullscreen-close las la-compress-arrows-alt" onclick="closeFullscreen();"></i>
+                </button>
+            </div>
+
+            <div class="navbar__right">
+                <ul class="navbar__action-list">
+                    <li>
+                        <button type="button" class="navbar-search__btn-open">
+                            <i class="las la-search"></i>
+                        </button>
+                    </li>
+                    <li class="dropdown">
+                        <button type="button" class="" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="navbar-user">
+                            <span class="navbar-user__thumb"><img src="./assets/images/profile/avatar-user.png" alt="image"></span>
+                            <span class="navbar-user__info">
+                            <span class="navbar-user__name">Admin</span>
+                            </span>
+                            <span class="icon"><i class="las la-chevron-circle-down"></i></span>
+                        </span>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu--sm p-0 border-0 box--shadow1 dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                            <a href="#"
+                            class="dropdown-menu__item d-flex align-items-center px-3 py-2">
+                                <i class="dropdown-menu__icon las la-user-circle"></i>
+                                <span class="dropdown-menu__caption">Profile</span>
+                            </a>
+
+                            <a href=""
+                            class="dropdown-menu__item d-flex align-items-center px-3 py-2">
+                                <i class="dropdown-menu__icon las la-key"></i>
+                                <span class="dropdown-menu__caption">Password</span>
+                            </a>
+
+                            <a href="logout"
+                            class="dropdown-menu__item d-flex align-items-center px-3 py-2">
+                                <i class="dropdown-menu__icon las la-sign-out-alt"></i>
+                                <span class="dropdown-menu__caption">Logout</span>
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- navbar-wrapper end -->
+        <div class="sidebar sidebar capsule--rounded bg_img overlay--indigo overlay--opacity-8"
+            data-background="./assets/images/sidebar/2.jpg">
+            <button class="res-sidebar-close-btn"><i class="las la-times"></i></button>
+            <div class="sidebar__inner">
+                    <div class="sidebar__logo">
+                        <a href="#" class="sidebar__main-logo text-left">
+                            <img src="./assets/images/logoIcon/logo.png" alt="image">
+                            <span class="text-white">Freelancer-Marketing</span>
+                        </a>
+                        <a href="#" class="sidebar__logo-shape">
+                            <img src="./assets/images/logoIcon/logo.png" alt="image"></a>
+                        
+                    </div>
+                    <div class="sidebar__menu-wrapper" id="sidebar__menuWrapper">
+                        <ul class="sidebar__menu">
+                            <li class="sidebar-menu-item active">
+                                <a href="dashboard" class="nav-link ">
+                                    <i class="menu-icon las la-home"></i>
+                                    <span class="menu-title">Dashboard</span>
+                                </a>
+                            </li>
+                        <ul>
+                    </div>
+                </div>
+        </div>
+        <!-- sidebar end -->    
+        
+        
+        <script src="./assets/js/bootstrap.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" type="text/javascript"></script>
+        <script src="./assets/js/app.js"></script>
+        <script src="./assets/js/custom.js"></script>
+    </body>
+</html>

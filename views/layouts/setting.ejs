@@ -1,0 +1,31 @@
+<%- include('../layouts/header.ejs') %>
+    <div class="page-wrapper default-version">
+        <div class="body-wrapper-main">
+            <div class="bodywrapper__inner">
+                <div class="body-wrapper">
+                    <form action="/api/setting" method="post" id="" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-md-12 mb-4">
+                                <div class="alert alert-danger" role="alert" id="error" style="display:none;"></div>
+                                <div class="alert alert-success" role="alert" id="success" style="display:none;"></div>
+                            </div>
+                            <div class="col-md-12 mb-4">
+                                <a href="https://accounts.freelancer.com/oauth/authorize?response_type=code&client_id=40119df1-9f69-4e0b-83e2-0ef77d2be0b6&redirect_uri=http://localhost:8000/auth&scope=basic" class="btn btn-primary text-white" target="_blank">Generate Token</a>
+                            </div>
+                            <div class="col-md-12 mb-4 card card-body bg-light">
+                                <span><b>Access Token</b>: <%- authenticattion.access_token %></span>
+                                <span><b>Expires In</b>: <%- authenticattion.expires_in %></span>
+                                <span><b>Refresh Token</b>: <%- authenticattion.refresh_token %></span>
+                                <span><b>Scope</b>: <%- authenticattion.scope %></span>
+                                <span><b>Token Type</b>: <%- authenticattion.token_type %></span>
+                                <span><b>Authenticattion End</b>: <%- authenticattion_end %></span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- bodywrapper__inner end -->
+        </div>
+        <!-- body-wrapper end -->
+    </div>
+    <%- include('../layouts/footer.ejs') %>

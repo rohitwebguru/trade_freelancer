@@ -1,0 +1,50 @@
+<%- include('../layouts/header.ejs') %>
+    <div class="body-wrapper-main">
+        <div class="bodywrapper__inner">
+            <div class="body-wrapper">
+                <a href="/users" class="btn btn-sm btn--primary box--shadow1 text--small addBtn mt-1 mb-3"><i class="fa fa-fw fa-reply"></i>Back</a>
+                <form onsubmit="return false" method="post" id="manage_users">
+                    <div class="alert alert-danger" role="alert" id="error" style="display:none;"></div>
+                    <div class="alert alert-success" role="alert" id="success" style="display:none;"></div>
+                    <div class="row">
+                        <div class="col-md-12 mb-4">
+                            <h1>General Setting</h1>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <label for="username">Name<span class="required">*</span></label>
+                            <input type="text" placeholder="" class="form-control" value="" name="username" id="username">
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <label for="email">Email<span class="required">*</span></label>
+                            <input type="text" placeholder="" class="form-control" value="" name="email" id="email">
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <label for="password">Password</label>
+                            <input type="password" placeholder="" class="form-control" value="" name="password" id="password">
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <label for="confirm_password">Confirm Password</label>
+                            <input type="password" placeholder="" class="form-control" value="" name="confirm_password" id="confirm_password">
+                        </div>
+                        <div class="col-md-12 mb-4">
+                            <h1>Permission Setting</h1>
+                        </div>
+                        <div class="col-md-12 mb-4">
+                            <label for="role_id">Select Role</label>
+                            <select name="role_id" id="role_id" class="form-control">
+                                <% if((resultRoles!= undefined)) { %>
+                                    <% resultRoles.forEach(function(resultRolesResult) { %>
+                                        <option value="<%- resultRolesResult.id %>"><%- resultRolesResult.role_title %></option>
+                                    <% }); %>
+                                <% } else { %><p>no data uploaded</p> <% } %>
+                             </select>
+                        </div>
+                        <div class="col-md-12 mb-4">
+                            <button type="submit" id="update_addusers" class="btn btn-primary">Update</button>
+                        </div>
+                    </div> 
+                </form>
+            </div>
+        </div>
+    </div>
+<%- include('../layouts/footer.ejs') %>

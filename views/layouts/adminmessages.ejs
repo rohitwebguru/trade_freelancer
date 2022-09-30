@@ -1,0 +1,142 @@
+<%- include('../layouts/header.ejs') %>
+    <div class="body-wrapper">
+        <div class="bodywrapper__inner" id="reports">
+            <section class="p-4 w-100" style="background-color: #eee;border-radius: 0.5rem 0.5rem 0 0;">
+                <div class="container message-container py-5" style="max-width: 1920px;">
+                    <div class="row">
+                        <div id="message-member-left" class="col-md-6 col-lg-5 col-xl-4 mb-4 mb-md-0">
+                            <h5 class="font-weight-bold mb-3 text-center text-lg-start">Member</h5>
+                            <div class="card">
+                                <div class="card-body message-box">
+                                    <ul class="list-unstyled mb-0" id="admin-thread-list">
+                                        <% 
+                                            var owner_ids = [];
+                                            var thread_ids = [];
+                                            var thread_info = [];
+                                            var thread_last_msg = [];
+                                            var thread_last_msg_count = [];
+                                            var is_read = [];
+
+                                            threads.forEach((val, i) => {
+                                                owner_ids[i] = val.thread.owner;
+                                                thread_ids[i] = val.thread.id;
+                                                if (type == 2) {
+                                                    is_read[val.thread.members[1]] = val.is_read;
+                                                    thread_info[val.thread.members[1]] = val.thread.id;
+                                                    if (val.thread.message != null) {
+                                                        thread_last_msg[val.thread.members[1]] = val.thread.message.message;
+                                                        thread_last_msg_count[val.thread.members[1]] = true;
+                                                    } else {
+                                                        thread_last_msg[val.thread.members[1]] = '';
+                                                        thread_last_msg_count[val.thread.members[1]] = false;
+                                                    }
+                                                } else {
+                                                    is_read[val.thread.members[0]] = val.is_read;
+                                                    thread_info[val.thread.members[0]] = val.thread.id;
+                                                    if (val.thread.message != null) {
+                                                        thread_last_msg[val.thread.members[0]] = val.thread.message.message;
+                                                        thread_last_msg_count[val.thread.members[0]] = true;
+                                                    } else {
+                                                        thread_last_msg[val.thread.members[0]] = '';
+                                                        thread_last_msg_count[val.thread.members[0]] = false;
+                                                    }
+                                                }
+                                            });
+
+                                            var info = ``;
+                                            var arr = Object.keys(users).map((key) => [Number(key), users[key]])
+                                            var j = 0;
+                                         %>
+
+                                            <% 
+
+                                            arr.forEach((val, i) => {
+                                                if (type == 2) {
+                                                    if (owner_ids.includes(val[1].id)) {
+
+                                                    } else {
+                                                        var thread_id = thread_info[val[1].id];
+                                                        var lst_msg = thread_last_msg[val[1].id];
+                                                        var lst_msg_count = thread_last_msg_count[val[1].id];
+                                                        var is_msg_read = is_read[val[1].id];
+                                         %>
+
+                                                <li class="p-2 border-bottom admin-pick-thread" style="background-color: #eee;cursor:pointer;" data-thread_id="<%= thread_id %>" data-user_id="<%= val[1].id %>">
+                                                    <a class="d-flex justify-content-between">
+                                                        <div class="d-flex flex-row">
+                                                            <img src="https://www.freelancer.com/<%= val[1].avatar %>" alt="avatar" class="rounded-circle d-flex align-self-center me-3 shadow-1-strong" width="50">
+                                                            <div class="pt-1">
+                                                                <p class="fw-bold mb-0">
+                                                                    <%= val[1].username %>
+                                                                </p>
+                                                                <p class="small text-muted">
+                                                                    <%= lst_msg %>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <% if (lst_msg_count && is_msg_read == false) { %>
+                                                            <div style='display:flex;flex-direction:column;align-items:flex-end;width:30%;margin-left:10px'>
+                                                                <p class="small text-muted mb-1">Just now</p>
+                                                                <span class="badge bg-danger float-end" style='height:fit-content;width:fit-content;'>1</span>
+                                                            </div>
+                                                            <% } else {} %>
+                                                    </a>
+                                                </li>
+
+                                                <% j++;
+                                                    }
+                                                } else {
+                                                    if (owner_ids.includes(val[1].id) == false) {
+
+                                                    } else {
+                                                        var thread_id = thread_info[val[1].id];
+                                                        var lst_msg = thread_last_msg[val[1].id];
+                                                        var lst_msg_count = thread_last_msg_count[val[1].id];
+                                                        var is_msg_read = is_read[val[1].id];
+                                        %>
+
+
+                                                    <li class="p-2 border-bottom admin-pick-thread" style="background-color: #eee;cursor:pointer;" data-thread_id="<%= thread_id %>" data-user_id="<%= val[1].id %>">`;
+                                                        <a class="d-flex justify-content-between">
+                                                            <div class="d-flex flex-row">
+                                                                <img src="https://www.freelancer.com/<%= val[1].avatar %>" alt="avatar" class="rounded-circle d-flex align-self-center me-3 shadow-1-strong" width="50">
+                                                                <div class="pt-1">
+                                                                    <p class="fw-bold mb-0">
+                                                                        <%= val[1].username %>
+                                                                    </p>
+                                                                    <p class="small text-muted">
+                                                                        <%= lst_msg %>
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                            <% if (lst_msg_count && is_msg_read == false) { %>
+                                                                <div style='display:flex;flex-direction:column;align-items:flex-end;width:30%;margin-left:10px'>
+                                                                    <p class="small text-muted mb-1">Just now</p>
+                                                                    <span class="badge bg-danger float-end" style='height:fit-content;width:fit-content;'>1</span>
+                                                                </div>
+                                                                <% } else {} %>
+                                                        </a>
+                                                    </li>
+                                                    <% j++; %>
+
+                                                        <%
+                                                    }
+                                                }
+
+                                            })
+                                        %>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="message-private-right" class="col-md-6 col-lg-7 col-xl-8">
+                            <ul class="list-unstyled admin-chat-list">
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <%- include('../layouts/footer.ejs') %>

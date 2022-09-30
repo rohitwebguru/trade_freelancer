@@ -1,0 +1,112 @@
+<%- include('../layouts/header.ejs') %>
+    <div class="body-wrapper">
+        <div class="bodywrapper__inner">
+            <a href="/browsefreelancers" class="btn btn-sm btn--primary icon-btn mb-3"><i class="fa fa-fw fa-reply"></i>Back</a>
+        </div>
+        <form method="post" id="post-and-invite">
+            <div class="row">
+                <input type="hidden" name="token" class="token" id="token" value="<%- token %>" />
+                <div class="col-lg-8">
+                    <div class="card" id="post-a-job-and-invite">
+                        <div class="card-header">
+                            <h2>Post a Job and Invite</h2>
+                            <button type="submit" class="post-job-invite">Post Job And Invite</button>
+                        </div>
+                        <div class="card-body">
+                            <div class="alert ml-3 mr-3 alert-danger" role="alert" id="error" style="display:none;"></div>
+                            <div class="alert ml-3 mr-3 alert-success" role="alert" id="success" style="display:none;"></div>
+                            <div class="private-message-section">
+                                <div class="profile-section">
+                                    <img src="<%=baseURL%>/assets/images/avatar.png" alt="" id="post-a-job-profile-section" height="60px" width="60px">
+                                    <div class="freelancer-name">
+                                        <h5>Anton K.</h5>
+                                    </div>
+                                </div>
+                                <div class="private-message">
+                                    <div class="form-group">
+                                        <label for="">Private Message</label>
+                                        <textarea type="text" class="form-control" required placeholder="Hello!
+I'd like to personally invite you to aplly to my job.
+Plea.se review the job post and apply if you're available" name="message_for_freelancer" id="message_for_freelancer" rows="12"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="">Title</label>
+                                <input type="text" class="form-control" required name="input_title" id="input_title">
+                            </div>
+                        </div>
+                        <input type="hidden" name="access_token" value="<%= token%>">
+                        <input type="hidden" name="invite" value="<%= invite%>">
+                        <hr>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="">Describe Your Job</label>
+                                <textarea type="text" class="form-control" required name="input_description" id="input_description" rows="12"></textarea>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="">Choose Skills</label>
+                                <select id="multiple" name="skill_fixed" required class="skill_fixed input-group js-select2-multi js-states form-control" multiple>
+                                 
+                                    <% if((jobs_results!= undefined)) { %>
+                                        <% jobs_results.forEach(function(jobs_result) { %>
+                                            <option value="<%- jobs_result.id %>"><%- jobs_result.name %></option>
+                                        <% }); %>
+                                    <% } else { %><p>no data uploaded</p> <% } %>
+                                </select>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="fixed_project" class="mb-3">Choose Project Type : </label><br>
+                                <input type="radio" name="p_type" id="fixed_project" value="fixed"> <label for="fixed_project">Fixed Project </label><br>
+                                <input type="radio" name="p_type" id="hourly_project" value="hourly"> <label for="hourly_project">Hourly Project</label>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="card-body">
+                            <label for="input-localjobproject-input_currency">Currency</label>
+                            <select name="input_currency" required class="input-group form-control">
+                                <% if((currency_results.currencies!= undefined)) { %>
+                                    <% currency_results.currencies.forEach(function(currency) { %>
+                                        <option value="<%- currency.id %>"><%- currency.name %></option>
+                                    <% }); %>
+                                <% } else { %><p>no data uploaded</p> <% } %>
+                            </select>
+                        </div>
+                        <hr>
+                        <div class="fixed-section">
+                            <div class="card-body d-flex">
+                                <div class="col-sm-6">
+                                    <label for="">Min budget</label>
+                                    <input type="number" min="0" placeholder="min" class="form-control" required name="input_budget_min" id="input_budget_min">
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="">Max budget</label>
+                                    <input type="number" min="0" placeholder="max" class="form-control" required name="input_budget_max" id="input_budget_max">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="hourly-section" style="display: none;">
+                            <hr>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="">Hours Per week</label>
+                                    <input type="number" min="0" max="100" class="form-control" required name="hoursPerWeek" id="hoursPerWeek">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <%- include('../layouts/footer.ejs') %>

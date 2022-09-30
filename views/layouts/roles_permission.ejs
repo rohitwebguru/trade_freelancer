@@ -1,0 +1,182 @@
+<%- include('../layouts/header.ejs') %>
+    <div class="body-wrapper">
+        <div class="bodywrapper__inner">
+            <form id="rolespermissionaction" method="post">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card b-radius--10 ">
+                            <div class="card-body p-0">
+                                <div class="table-responsive--md  table-responsive" id="permission_module">
+                                    <table class="table style--two">
+                                        <thead>
+                                            <tr>
+                                                <td></td>
+                                                <td class="fw-bold">Super Admin</td><td class="fw-bold">Administrator</td><td class="fw-bold">Agent</td><td class="fw-bold">Agent's User</td>
+                                            </tr>
+                                            <tr id="manage_logs">
+                                                <td class="fw-bold cursor-pointer">Manage Logs</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td><i class="fas fa-angle-down arrow"></i></td>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="manage_logs_content">
+                                            <tr>
+                                                <td><label for="logs_permission_id">View</label></td>
+                                                <td id="edit-1"><input type="checkbox" id="logs_permission_id" value="4" name="logs_permission_id[1][logs_module][]" checked="checked"></td><td id="edit-2"><input type="checkbox" id="logs_permission_id" value="4" name="logs_permission_id[2][logs_module][]" checked="checked"></td><td id="edit-3"><input type="checkbox" id="logs_permission_id" value="4" name="logs_permission_id[3][logs_module][]" checked="checked"></td><td id="edit-7"><input type="checkbox" id="logs_permission_id" value="4" name="logs_permission_id[7][logs_module][]" checked="checked"></td>
+                                            </tr>
+                                        </tbody>
+                                        <thead>
+                                            <tr id="manage_users">
+                                                <td class="fw-bold cursor-pointer">Manage User</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td><i class="fas fa-angle-down arrow"></i></td>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="manage_users_content">
+                                            <tr>
+                                                <td>
+                                                    <label for="user_permission_id">Add</label>
+                                                </td>
+                                                <td><input type="checkbox" id="user_permission_id" value="1" name="user_permission_id[1][user_module][]"></td><td><input type="checkbox" id="user_permission_id" value="1" name="user_permission_id[2][user_module][]"></td><td><input type="checkbox" id="user_permission_id" value="1" name="user_permission_id[3][user_module][]"></td><td><input type="checkbox" id="user_permission_id" value="1" name="user_permission_id[7][user_module][]"></td>
+                                            </tr>
+                                            <tr>
+                                                <td><label for="user_permission_id">Edit</label></td>
+                                                <td id="update-1"><input type="checkbox" id="user_permission_id" value="2" name="user_permission_id[1][user_module][]"></td><td id="update-2"><input type="checkbox" id="user_permission_id" value="2" name="user_permission_id[2][user_module][]"></td><td id="update-3"><input type="checkbox" id="user_permission_id" value="2" name="user_permission_id[3][user_module][]"></td><td id="update-7"><input type="checkbox" id="user_permission_id" value="2" name="user_permission_id[7][user_module][]"></td>
+                                            </tr>
+                                            <tr>
+                                                <td><label for="user_permission_id">Delete</label></td>
+                                                <td id="del-1"><input type="checkbox" id="user_permission_id" value="3" name="user_permission_id[1][user_module][]"></td><td id="del-2"><input type="checkbox" id="user_permission_id" value="3" name="user_permission_id[2][user_module][]"></td><td id="del-3"><input type="checkbox" id="user_permission_id" value="3" name="user_permission_id[3][user_module][]"></td><td id="del-7"><input type="checkbox" id="user_permission_id" value="3" name="user_permission_id[7][user_module][]"></td>
+                                            </tr>
+                                            <tr>
+                                                <td><label for="user_permission_id">View</label></td>
+                                                <td id="edit-1"><input type="checkbox" id="user_permission_id" value="4" name="user_permission_id[1][user_module][]" checked="checked"></td><td id="edit-2"><input type="checkbox" id="user_permission_id" value="4" name="user_permission_id[2][user_module][]" checked="checked"></td><td id="edit-3"><input type="checkbox" id="user_permission_id" value="4" name="user_permission_id[3][user_module][]" checked="checked"></td><td id="edit-7"><input type="checkbox" id="user_permission_id" value="4" name="user_permission_id[7][user_module][]" checked="checked"></td>
+                                            </tr>
+                                            <tr>
+                                                <td><label for="user_permission_id">Copy Agent Credentials</label></td>
+                                                <td><input type="checkbox" id="user_permission_id" value="5" name="user_permission_id[1][user_module][]"></td><td><input type="checkbox" id="user_permission_id" value="5" name="user_permission_id[2][user_module][]"></td><td><input type="checkbox" id="user_permission_id" value="5" name="user_permission_id[3][user_module][]"></td><td><input type="checkbox" id="user_permission_id" value="5" name="user_permission_id[7][user_module][]"></td>
+                                            </tr>
+                                        </tbody>
+                                        <thead>
+                                            <tr id="manage_permission">
+                                                <td class="fw-bold cursor-pointer">Manage Permission</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td><i class="fas fa-angle-down arrow"></i></td>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="manage_permission_content">
+                                            <tr>
+                                                <td><label for="permission_id">Edit</label></td>
+                                                <td id="update-1"><input type="checkbox" id="permissions_id" value="2" name="permissions_id[1][permission_module][]"></td><td id="update-2"><input type="checkbox" id="permissions_id" value="2" name="permissions_id[2][permission_module][]"></td><td id="update-3"><input type="checkbox" id="permissions_id" value="2" name="permissions_id[3][permission_module][]"></td><td id="update-7"><input type="checkbox" id="permissions_id" value="2" name="permissions_id[7][permission_module][]"></td>
+                                            </tr>
+                                            <tr>
+                                                <td><label for="permission_id">View</label></td>
+                                                <td id="edit-1"><input type="checkbox" id="permissions_id" value="4" name="permissions_id[1][permission_module][]" checked="checked"></td><td id="edit-2"><input type="checkbox" id="permissions_id" value="4" name="permissions_id[2][permission_module][]" checked="checked"></td><td id="edit-3"><input type="checkbox" id="permissions_id" value="4" name="permissions_id[3][permission_module][]" checked="checked"></td><td id="edit-7"><input type="checkbox" id="permissions_id" value="4" name="permissions_id[7][permission_module][]" checked="checked"></td>
+                                            </tr>
+                                        </tbody>
+                                        <thead>
+                                            <tr id="manage_sites">
+                                                <td class="fw-bold cursor-pointer">Manage Sites</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td><i class="fas fa-angle-down arrow"></i></td>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="manage_sites_content">
+                                            <tr>
+                                                <td>
+                                                    <label for="site_permisssion_id">Add</label>
+                                                </td>
+                                                <td><input type="checkbox" id="site_permission_id" value="1" name="site_permission_id[1][site_module][]"></td><td><input type="checkbox" id="site_permission_id" value="1" name="site_permission_id[2][site_module][]"></td><td><input type="checkbox" id="site_permission_id" value="1" name="site_permission_id[3][site_module][]"></td><td><input type="checkbox" id="site_permission_id" value="1" name="site_permission_id[7][site_module][]"></td>
+                                            </tr>
+                                            <tr>
+                                                <td><label for="site_permisssion_id">Edit</label></td>
+                                                <td id="update-1"><input type="checkbox" id="site_permission_id" value="2" name="site_permission_id[1][site_module][]"></td><td id="update-2"><input type="checkbox" id="site_permission_id" value="2" name="site_permission_id[2][site_module][]"></td><td id="update-3"><input type="checkbox" id="site_permission_id" value="2" name="site_permission_id[3][site_module][]"></td><td id="update-7"><input type="checkbox" id="site_permission_id" value="2" name="site_permission_id[7][site_module][]"></td>
+                                            </tr>
+                                            <tr>
+                                                <td><label for="site_permisssion_id">Delete</label></td>
+                                                <td id="del-1"><input type="checkbox" id="site_permission_id" value="3" name="site_permission_id[1][site_module][]"></td><td id="del-2"><input type="checkbox" id="site_permission_id" value="3" name="site_permission_id[2][site_module][]"></td><td id="del-3"><input type="checkbox" id="site_permission_id" value="3" name="site_permission_id[3][site_module][]"></td><td id="del-7"><input type="checkbox" id="site_permission_id" value="3" name="site_permission_id[7][site_module][]"></td>
+                                            </tr>
+                                            <tr>
+                                                <td><label for="site_permisssion_id">View</label></td>
+                                                <td id="edit-1"><input type="checkbox" id="site_permission_id" value="4" name="site_permission_id[1][site_module][]" checked="checked"></td><td id="edit-2"><input type="checkbox" id="site_permission_id" value="4" name="site_permission_id[2][site_module][]" checked="checked"></td><td id="edit-3"><input type="checkbox" id="site_permission_id" value="4" name="site_permission_id[3][site_module][]" checked="checked"></td><td id="edit-7"><input type="checkbox" id="site_permission_id" value="4" name="site_permission_id[7][site_module][]" checked="checked"></td>
+                                            </tr>
+                                        </tbody>
+                                        <thead>
+                                            <tr id="manage_games">
+                                                <td class="fw-bold cursor-pointer">Manage Games</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td><i class="fas fa-angle-down arrow"></i></td>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="manage_games_content">
+                                            <tr>
+                                                <td>
+                                                    <label for="games_permisssion_id">Add</label>
+                                                </td>
+                                                <td><input type="checkbox" id="game_permission_id" value="1" name="game_permission_id[1][game_module][]"></td><td><input type="checkbox" id="game_permission_id" value="1" name="game_permission_id[2][game_module][]"></td><td><input type="checkbox" id="game_permission_id" value="1" name="game_permission_id[3][game_module][]"></td><td><input type="checkbox" id="game_permission_id" value="1" name="game_permission_id[7][game_module][]" checked="checked"></td>
+                                            </tr>
+                                            <tr>
+                                                <td><label for="games_permisssion_id">Edit</label></td>
+                                                <td id="update-1"><input type="checkbox" id="game_permission_id" value="2" name="game_permission_id[1][game_module][]"></td><td id="update-2"><input type="checkbox" id="game_permission_id" value="2" name="game_permission_id[2][game_module][]"></td><td id="update-3"><input type="checkbox" id="game_permission_id" value="2" name="game_permission_id[3][game_module][]"></td><td id="update-7"><input type="checkbox" id="game_permission_id" value="2" name="game_permission_id[7][game_module][]"></td>
+                                            </tr>
+                                            <tr>
+                                                <td><label for="games_permisssion_id">Delete</label></td>
+                                                <td id="del-1"><input type="checkbox" id="game_permission_id" value="3" name="game_permission_id[1][game_module][]"></td><td id="del-2"><input type="checkbox" id="game_permission_id" value="3" name="game_permission_id[2][game_module][]"></td><td id="del-3"><input type="checkbox" id="game_permission_id" value="3" name="game_permission_id[3][game_module][]"></td><td id="del-7"><input type="checkbox" id="game_permission_id" value="3" name="game_permission_id[7][game_module][]"></td>
+                                            </tr>
+                                            <tr>
+                                                <td><label for="games_permisssion_id">View</label></td>
+                                                <td id="edit-1"><input type="checkbox" id="game_permission_id" value="4" name="game_permission_id[1][game_module][]" checked="checked"></td><td id="edit-2"><input type="checkbox" id="game_permission_id" value="4" name="game_permission_id[2][game_module][]" checked="checked"></td><td id="edit-3"><input type="checkbox" id="game_permission_id" value="4" name="game_permission_id[3][game_module][]" checked="checked"></td><td id="edit-7"><input type="checkbox" id="game_permission_id" value="4" name="game_permission_id[7][game_module][]" checked="checked"></td>
+                                            </tr>
+                                        </tbody>
+                                        <thead>
+                                            <tr id="manage_draws">
+                                                <td class="fw-bold cursor-pointer">Manage Draws</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td><i class="fas fa-angle-down arrow"></i></td>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="manage_draws_content">
+        
+                                            <tr>
+                                                <td>
+                                                    <label for="draws_permisssion_id">Add</label>
+                                                </td>
+                                                <td><input type="checkbox" id="draws_permission_id" value="1" name="draws_permission_id[1][draws_module][]" checked="checked"></td><td><input type="checkbox" id="draws_permission_id" value="1" name="draws_permission_id[2][draws_module][]"></td><td><input type="checkbox" id="draws_permission_id" value="1" name="draws_permission_id[3][draws_module][]"></td><td><input type="checkbox" id="draws_permission_id" value="1" name="draws_permission_id[7][draws_module][]" checked="checked"></td>
+                                            </tr>
+                                            <tr>
+                                                <td><label for="draws_permisssion_id">Edit</label></td>
+                                                <td id="update-1"><input type="checkbox" id="draws_permission_id" value="2" name="draws_permission_id[1][draws_module][]"></td><td id="update-2"><input type="checkbox" id="draws_permission_id" value="2" name="draws_permission_id[2][draws_module][]"></td><td id="update-3"><input type="checkbox" id="draws_permission_id" value="2" name="draws_permission_id[3][draws_module][]"></td><td id="update-7"><input type="checkbox" id="draws_permission_id" value="2" name="draws_permission_id[7][draws_module][]"></td>
+                                            </tr>
+                                            <tr>
+                                                <td><label for="draws_permisssion_id">Delete</label></td>
+                                                <td id="del-1"><input type="checkbox" id="draws_permission_id" value="3" name="draws_permission_id[1][draws_module][]"></td><td id="del-2"><input type="checkbox" id="draws_permission_id" value="3" name="draws_permission_id[2][draws_module][]"></td><td id="del-3"><input type="checkbox" id="draws_permission_id" value="3" name="draws_permission_id[3][draws_module][]"></td><td id="del-7"><input type="checkbox" id="draws_permission_id" value="3" name="draws_permission_id[7][draws_module][]"></td>
+                                            </tr>
+                                            <tr>
+                                                <td><label for="draws_permisssion_id">View</label></td>
+                                                <td id="edit-1"><input type="checkbox" id="draws_permission_id" value="4" name="draws_permission_id[1][draws_module][]" checked="checked"></td><td id="edit-2"><input type="checkbox" id="draws_permission_id" value="4" name="draws_permission_id[2][draws_module][]" checked="checked"></td><td id="edit-3"><input type="checkbox" id="draws_permission_id" value="4" name="draws_permission_id[3][draws_module][]" checked="checked"></td><td id="edit-7"><input type="checkbox" id="draws_permission_id" value="4" name="draws_permission_id[7][draws_module][]" checked="checked"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table><!-- table end -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4 mt-4">
+                        <button id="roles_permission" type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+<%- include('../layouts/footer.ejs') %>

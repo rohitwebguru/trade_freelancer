@@ -1,0 +1,797 @@
+.body-wrapper h1 {
+    font-size: 28px;
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: 1.5em;
+    padding-bottom: 15px;
+    position: relative;
+}
+
+.body-wrapper h1:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 5px;
+    width: 55px;
+    background-color: #111;
+}
+
+.body-wrapper h1:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 2px;
+    height: 1px;
+    width: 95%;
+    max-width: 255px;
+    background-color: #333;
+}
+
+.modal-confirm {
+    color: #636363;
+    width: 400px;
+}
+
+.modal-confirm .modal-content {
+    padding: 20px;
+    border-radius: 5px;
+    border: none;
+    text-align: center;
+    font-size: 14px;
+}
+
+.modal-confirm .modal-header {
+    border-bottom: none;
+    position: relative;
+}
+
+.modal-confirm h4 {
+    text-align: center;
+    font-size: 26px;
+    margin: 30px 0 -10px;
+}
+
+.modal-confirm .close {
+    position: absolute;
+    top: -5px;
+    right: -2px;
+}
+
+.modal-confirm .modal-body {
+    color: #999;
+}
+
+.modal-confirm .modal-footer {
+    border: none;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 13px;
+    padding: 10px 15px 25px;
+}
+
+.modal-confirm .modal-footer a {
+    color: #999;
+}
+
+.modal-confirm .icon-box {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    border-radius: 50%;
+    z-index: 9;
+    text-align: center;
+}
+
+.modal-confirm .icon-box i {
+    color: #f15e5e;
+    font-size: 76px;
+    display: inline-block;
+    margin-top: 13px;
+}
+
+.modal-confirm .btn,
+.modal-confirm .btn:active {
+    color: #fff;
+    border-radius: 4px;
+    background: #60c7c1;
+    text-decoration: none;
+    transition: all 0.4s;
+    line-height: normal;
+    min-width: 120px;
+    border: none;
+    min-height: 40px;
+    border-radius: 3px;
+    margin: 0 5px;
+}
+
+.modal-confirm .btn-secondary {
+    background: #c1c1c1;
+}
+
+.modal-confirm .btn-secondary:hover,
+.modal-confirm .btn-secondary:focus {
+    background: #a8a8a8;
+}
+
+.modal-confirm .btn-danger {
+    background: #f15e5e;
+}
+
+.modal-confirm .btn-danger:hover,
+.modal-confirm .btn-danger:focus {
+    background: #ee3535;
+}
+
+#SitemyModal a.delete,
+#GamemyModal a.delete,
+#DrawsmyModal a.delete,
+#UsermyModal a.delete,
+a.viewlogs i.la-eye,
+#LogsModal a.delete {
+    line-height: 28px;
+    color: #fff;
+}
+
+i.la-trash {
+    color: #fff;
+}
+
+.pagination .hidden {
+    display: none;
+}
+
+.pagination span,
+.pagination a {
+    color: #000000;
+}
+
+.pagination a:hover,
+a span:hover {
+    text-decoration: none;
+    color: #7367f0;
+}
+
+.pagination-showing-list {
+    font-size: 0.875rem;
+    line-height: 1.7;
+    font-weight: 400;
+    color: #5b6e88;
+}
+
+.crpto-currency-box {
+    text-align: center;
+    padding: 30px 10px;
+    margin-bottom: 15px;
+    border: 2px solid #eee;
+    border-radius: 8px;
+    background: #fff;
+}
+
+.crpto-currency-box img {
+    max-width: 50px;
+    margin-bottom: 5px;
+}
+
+.crpto-currency-box h3 {
+    font-size: 18px;
+    margin: 10px 0 0;
+}
+
+.checky-box {
+    width: 25px;
+    height: 25px;
+    padding: 1px;
+    cursor: pointer;
+    border-radius: 3px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.payment-list div.active {
+    border-color: #887ef0;
+    position: relative;
+}
+
+.payment-list .checky-box .la-check-circle {
+    display: none;
+}
+
+.payment-list div.active .checky-box .la-check-circle {
+    position: absolute;
+    content: '';
+    height: 25px;
+    font-size: 24px;
+    width: 25px;
+    line-height: 25px;
+    text-align: center;
+    z-index: 100;
+    color: #FFF;
+    top: 0;
+    left: 0;
+    display: block;
+}
+
+.payment-list div.active .checky-box {
+    background: #887ef0;
+}
+
+.payment-list label.form-check-label {
+    display: inherit;
+}
+
+.payment-list .form-check {
+    padding-left: 0;
+}
+
+#editAllUserModal .modal-dialog {
+    max-width: 800px;
+}
+
+.fw-bold {
+    font-weight: bold !important;
+}
+
+.table-responsive--md.table-responsive .table td {
+    font-size: 0.9125rem;
+    color: #5b6e88;
+    font-weight: 500;
+    padding: 15px 25px;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.card.bg-gradient-info {
+    box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);
+    margin-bottom: 1rem;
+    border: 0 solid rgba(0, 0, 0, .125);
+    border-radius: 0.25rem;
+}
+
+
+/* pratham project section*/
+
+.project-header {
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.project-header h2 {
+    font-weight: bold;
+}
+
+.project-header h4 {
+    font-weight: 600;
+}
+
+.project-body,
+.bidding-body {
+    padding: 20px 20px;
+}
+
+.project-title h3 {
+    font-weight: 900;
+    text-transform: capitalize;
+}
+
+.project-skill h3 {
+    font-weight: 800;
+}
+
+.all-required-skills {
+    display: flex;
+}
+
+.required-skill {
+    border: 1px solid #dedede;
+    padding: 5px 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+    border-radius: 25px;
+}
+
+.bidding-box {
+    margin-top: 20px;
+}
+
+.bidding-header {
+    padding: 10px 20px;
+}
+
+.bidding-header h2 {
+    font-weight: bold;
+}
+
+.bidding-body label {
+    font-weight: bold;
+}
+
+.place-bid-btn {
+    background: #1073CB !important;
+    color: white !important;
+    border: 0;
+    outline: none;
+}
+
+.about-client-header {
+    padding: 10px 20px;
+}
+
+.about-client-header h4 {
+    font-weight: bold;
+}
+
+.user-desc {
+    padding: 10px 20px;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+}
+
+#edit-permission-modal {
+    height: 600px;
+    overflow-y: auto;
+}
+
+#dashboard .card {
+    border-radius: 4px;
+    background-color: #fff;
+    margin-bottom: 30px;
+}
+
+#dashboard .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: initial;
+    border: 1px solid rgba(0, 0, 0, .125);
+    border-radius: 0.25rem;
+}
+
+#dashboard .icon-big i{
+    font-size: 45px;
+}
+
+.rating { 
+    border: none;
+    float: left;
+  }
+  
+  .rating > input { display: none; } 
+  .rating > label:before { 
+    margin: 5px;
+    font-size: 1.25em;
+    font-family: FontAwesome;
+    display: inline-block;
+    content: "\f005";
+  }
+  
+  .rating > .half:before { 
+    content: "\f089";
+    position: absolute;
+  }
+  
+  .rating > label { 
+    color: #ddd; 
+   float: right; 
+  }
+  
+  /***** CSS Magic to Highlight Stars on Hover *****/
+  
+  .rating > input:checked ~ label, /* show gold star when clicked */
+  .rating:not(:checked) > label:hover, /* hover current star */
+  .rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+  
+  .rating > input:checked + label:hover, /* hover current star when changing rating */
+  .rating > input:checked ~ label:hover,
+  .rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+  .rating > input:checked ~ label:hover ~ label { color: #FFED85;  } .rating { 
+    border: none;
+    float: left;
+  }
+  
+  .rating > input { display: none; } 
+  .rating > label:before { 
+    margin: 0px 5px;
+    font-size:2.40em;
+    font-family: FontAwesome;
+    display: inline-block;
+    content: "\f005";
+  }
+  
+  .rating > .half:before { 
+    content: "\f089";
+    position: absolute;
+  }
+  
+  .rating > label { 
+    color: #ddd; 
+   float: right; 
+  }
+  
+  /***** CSS Magic to Highlight Stars on Hover *****/
+  
+  .rating > input:checked ~ label, /* show gold star when clicked */
+  .rating:not(:checked) > label:hover, /* hover current star */
+  .rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+  
+  .rating > input:checked + label:hover, /* hover current star when changing rating */
+  .rating > input:checked ~ label:hover,
+  .rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+  .rating > input:checked ~ label:hover ~ label { color: #FFED85;  } 
+
+a.update_now{
+    cursor: pointer;
+}
+a.update_now:hover{
+    color:#1073CB
+}
+.freelancers-projects .project-description{
+    display: inline-block;
+}
+.me-3 {
+    margin-right: 1rem!important;
+}
+.shadow-1-strong {
+    box-shadow: 0 0 2px 0 rgba(0,0,0,.16),0 1px 1px 0 rgba(0,0,0,.1)!important;
+}
+.text-lg-start {
+    text-align: left!important;
+}
+.card {
+    border: 0;
+    box-shadow: 0 2px 15px -3px rgb(0 0 0 / 7%), 0 10px 20px -2px rgb(0 0 0 / 4%);
+}
+.text-muted {
+    --mdb-text-opacity: 1;
+    color: #757575!important;
+}
+.badge {
+    border-radius: 0.27rem;
+}
+
+.float-end {
+    float: right!important;
+}
+.badge {
+    display: inline-block;
+    padding: 0.35em 0.65em;
+    font-size: .75em;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+}
+.small, small{
+    font-size: 90%;
+}
+.ms-3 {
+    margin-left: 1rem!important;
+}
+.form-outline .form-control {
+    min-height: auto;
+    padding: 0.33em 0.75em;
+    border-radius: 0.25rem;
+    background: transparent;
+    transition: all .2s linear;
+    resize: none;
+    line-height: 1.8;
+}
+.form-outline{
+    position: relative;
+}
+.form-outline .form-control~.form-label {
+    position: absolute;
+    top: 0;
+    max-width: 90%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    left: 0.75rem;
+    padding-top: 0.37rem;
+    pointer-events: none;
+    transform-origin: 0 0;
+    transition: all .2s ease-out;
+    color: rgba(0,0,0,.6);
+    margin-bottom: 0;
+}
+
+.active-bg-color{
+    background-color: #eee;
+}
+.freelancer-hiremename{
+    width:100%;
+}
+#project_for_hireme {
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+#project_for_hireme_budget {
+    display: inline-block;
+    width: 60%;
+    padding: 0.375rem 1.3rem;
+    font-size: 1rem;
+    line-height: 1;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.freelancer-hiremename-budget{
+    position: relative;
+}
+span.currency_sign{
+    background-image: url('../images/rupee-sign-solid.svg');
+    background-repeat: no-repeat;
+    background-position: 5px 0px;
+    position: absolute;
+    left: 1px;
+    top: 40px;
+    content: '';
+    display: block;
+    width: 15px;
+    height: 15px;
+}
+#existingproject_hireme{
+    width: 17px;
+}
+#project_for_hireme_budget_sign{
+    width: 30%;
+    margin-left:35px
+}
+
+.nav-pills .nav-link{
+    color:#000;
+    font-size: 1rem;
+}
+.freelancer-hiredprofile-img{
+    display: inline-block;
+}
+.freelancer-hiredprofile-info{
+    display: inline-block;
+    height: 100%;
+    vertical-align: bottom;
+}
+
+.spinner-border{
+    position: fixed;
+    z-index: 1;
+    left: 25%;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 100px;
+    height: 100px;
+    margin: auto;
+}
+.btn i.fas.fa-search{
+    margin-right: 0px;
+}
+#clientfilters.clientfilters, #freelancerfilters.freelancerfilters{
+    width: 100%;
+    padding: 25px;
+    background-color: #f2f7f2;
+    color: white;
+    transition: 1s;
+    box-sizing: border-box;
+    display: inherit;
+}
+#clientfilters:after, #freelancerilters:after{
+    transition: 1s;
+}
+#clientfilters ul li, #freelancerfilters ul li{
+    color: #AAAAAA;
+    display: block;
+    position: relative;
+  }
+  
+#clientfilters ul li input[type=radio], #freelancerfilters ul li input[type=radio]{
+    position: absolute;
+    visibility: hidden;
+  }
+  
+#clientfilters ul li label, #freelancerfilters ul li label{
+    display: block;
+    position: relative;
+    font-weight: 700;
+    font-size: 1.0em;
+    padding: 7px 0px 0px 40px;
+    margin: 0px auto;
+    z-index: 9;
+    cursor: pointer;
+    -webkit-transition: all 0.25s linear;
+    height: 35px;
+  }
+  
+#clientfilters ul li .check, #freelancerfilters ul li .check{
+    display: block;
+    position: absolute;
+    border: 5px solid #AAAAAA;
+    border-radius: 100%;
+    height: 25px;
+    width: 25px;
+    top: 5px;
+    left: 0px;
+    z-index: 5;
+    transition: border .25s linear;
+    -webkit-transition: border .25s linear;
+  }
+
+  
+#clientfilters ul li .check::before, #freelancerfilters ul li .check::before {
+    display: block;
+    position: absolute;
+    content: '';
+    border-radius: 100%;
+    height: 15px;
+    width: 15px;
+    top: 0px;
+    left: 0px;
+    margin: auto;
+    transition: background 0.25s linear;
+    -webkit-transition: background 0.25s linear;
+  }
+  
+#clientfilters input[type=radio]:checked ~ .check, #freelancerfilters input[type=radio]:checked ~ .check {
+    border: 5px solid #0DFF92;
+}
+#clientfilters input[type=radio]:checked ~ .check, #freelancerfilters input[type=radio]:checked ~ .check {
+    border: 5px solid #0DFF92;
+}
+  
+#clientfilters ul.visibility-client input[type=radio]:checked ~ .check::before, #freelancerfilters ul.visibility-client input[type=radio]:checked ~ .check::before{
+    background: #0DFF92;
+}
+#clientfilters ul.type-client input[type=radio]:checked ~ .check::before, #freelancerfilters ul.type-client input[type=radio]:checked ~ .check::before{
+    background: #0DFF92;
+}
+  
+#clientfilters input[type=radio]:checked ~ label, #freelancerfilters input[type=radio]:checked ~ label{
+    color: #0d6efd;
+    font-weight: 700;
+}
+.text-color{
+    color:#000;
+}
+
+[class*=icheck-] {
+    min-height: 25px;
+    margin-top: 6px!important;
+    margin-bottom: 6px!important;
+    padding-left: 0;
+}
+[class*=icheck-]>input:first-child {
+    position: absolute!important;
+    opacity: 0;
+    margin: 0;
+}
+[class*=icheck-]>input:first-child+label::before {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    border: 1px solid #D3CFC8;
+    border-radius: 0;
+    margin-left: -29px;
+}
+
+label:not(.form-check-label):not(.custom-file-label) {
+    font-weight: 700;
+}
+
+label:not(.form-check-label):not(.custom-file-label) {
+    font-weight: 700;
+    color: #AAAAAA;
+    font-size: 0.95em;
+}
+[class*=icheck-]>label {
+    padding-left: 29px!important;
+    min-height: 22px;
+    line-height: 22px;
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+    margin-bottom: 0;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.icheck-primary>input:first-child:checked+input[type=hidden]+label::before, .icheck-primary>input:first-child:checked+label::before {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+[class*=icheck-]>input:first-child:checked+input[type=hidden]+label::after, [class*=icheck-]>input:first-child:checked+label::after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    top: -2px;
+    left: 1px;
+    width: 8px;
+    height: 17px;
+    border: 2px solid #fff;
+    border-left: none;
+    border-top: none;
+    transform: translate(7.75px,4.5px) rotate(45deg);
+    -ms-transform: translate(7.75px,4.5px) rotate(45deg);
+}
+
+#clientfilters .form-check-label, #freelancerfilters .form-check-label{
+    padding-left: 1em;
+    margin-top: 6px;
+    font-size: 1rem;
+    color: #AAAAAA;
+    margin-bottom: 10px;
+}
+#clientfilters input[type="radio"], input[type="range"], input[type="checkbox"], #freelancerfilters input[type="radio"], input[type="range"], input[type="checkbox"] {
+    /* height: auto !important; */
+    padding: 0;
+    width: 25px;
+    height: 25px!important;
+}
+
+#clientfilters, #freelancerfilters{
+    display: none;
+}
+
+#filter-value-cli{
+    display: inline-block;
+    background-color: #0d6efd;
+    color: #fff;
+    padding: 0px 8px;
+    border-radius: 50px;
+    font-size: 15px;
+    width: 125px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    margin-right: 8px;
+    margin-bottom: 20px;
+}
+#filter-value-cli-radio{
+    display: inline-block;
+    background-color: #0d6efd;
+    color: #fff;
+    padding: 0px 8px;
+    border-radius: 50px;
+    font-size: 15px;
+    width: 125px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    margin-right: 8px;
+    margin-bottom: 20px;
+}
+#filter-value-cli i,
+#filter-value-cli-radio i{
+    margin-left: 5px;
+}
+
+.autocomplete-suggestions{
+    padding: 10px 15px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    max-height: 100%!important;
+}

@@ -1,0 +1,76 @@
+<%- include('../layouts/header.ejs') %>
+    <div class="body-wrapper">
+        <div class="bodywrapper__inner" id="reports">
+            <section class="p-4 w-100" style="background-color: #eee;border-radius: 0.5rem 0.5rem 0 0;">
+                <div class="container message-container py-5" style="max-width: 1920px;">
+                    <div class="row">
+                        <div id="message-member-left" class="col-md-6 col-lg-5 col-xl-4 mb-4 mb-md-0">
+                            <h5 class="font-weight-bold mb-3 text-center text-lg-start">Member</h5>
+                            <div class="card">
+                                <div class="card-body message-box">
+                                    <ul class="list-unstyled mb-0" id="thread-list">
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="message-private-right" class="col-md-6 col-lg-7 col-xl-8">
+                            <ul class="list-unstyled chat-list">
+                                <!-- <li class="d-flex justify-content-between mb-4">
+                                    <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp" alt="avatar" class="rounded-circle d-flex align-self-start me-3 shadow-1-strong" width="60">
+                                    <div class="card">
+                                        <div class="card-header d-flex justify-content-between p-3">
+                                            <p class="fw-bold mb-0">Brad Pitt</p>
+                                            <p class="text-muted small mb-0"><i class="far fa-clock"></i> 12 mins ago</p>
+                                        </div>
+                                        <div class="card-body">
+                                            <p class="mb-0">
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="d-flex justify-content-between mb-4">
+                                    <div class="card w-100 active-bg-color">
+                                        <div class="card-header d-flex justify-content-between p-3">
+                                            <p class="fw-bold mb-0">Lara Croft</p>
+                                            <p class="text-muted small mb-0"><i class="far fa-clock"></i> 13 mins ago</p>
+                                        </div>
+                                        <div class="card-body">
+                                            <p class="mb-0">
+                                                Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-5.webp" alt="avatar" class="rounded-circle d-flex align-self-start ms-3 shadow-1-strong" width="60">
+                                </li>
+                                <li class="d-flex justify-content-between mb-4">
+                                    <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp" alt="avatar" class="rounded-circle d-flex align-self-start me-3 shadow-1-strong" width="60">
+                                    <div class="card">
+                                        <div class="card-header d-flex justify-content-between p-3">
+                                            <p class="fw-bold mb-0">Brad Pitt</p>
+                                            <p class="text-muted small mb-0"><i class="far fa-clock"></i> 10 mins ago</p>
+                                        </div>
+                                        <div class="card-body">
+                                            <p class="mb-0">
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class='mt-auto'>
+                                    <form action="return false">
+                                        <div class="form-outline mb-3 bg-white">
+                                            <input type="hidden" name="thread_id" id="thread_id" required>
+                                            <textarea class="form-control" id="user_msg" rows="4" placeholder="Message" required></textarea>
+                                        </div>
+                                        <button type="button" id="" class="btn btn-info btn-rounded float-end message_send_chat_temp">Send</button>
+                                    </form>
+                                </li> -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <%- include('../layouts/footer.ejs') %>

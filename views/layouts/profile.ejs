@@ -1,0 +1,79 @@
+<%- include('../layouts/header.ejs') %>
+    <div class="page-wrapper default-version">
+        <div class="body-wrapper-main">
+            <div class="bodywrapper__inner">
+                <div class="body-wrapper">
+                    <form action="/api/profile" method="post" id="" enctype="multipart/form-data">
+                        <input type="hidden" value="<%- user.id %>" name="user_id" id="user_id">
+                        <div class="row">
+                            <div class="col-md-12 mb-4 ">
+                                <div class="alert alert-danger" role="alert" id="error" style="display:none;"></div>
+                                <div class="alert alert-success" role="alert" id="success" style="display:none;"></div>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <label for="username">Name<span class="required">*</span></label>
+                                <input type="text" placeholder="" class="form-control" value="<%- user.username %>" name="username" id="username">
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <label for="email">Email<span class="required">*</span></label>
+                                <input type="text" placeholder="" class="form-control" value="<%- user.email %>" name="email" id="email">
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <label for="password">New Password</label>
+                                <input type="password" placeholder="" class="form-control" value="" name="password" id="password">
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <label for="confirm_password">Confirm Password</label>
+                                <input type="password" placeholder="" class="form-control" value="" name="confirm_password" id="confirm_password">
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <label for="image">Profile Image</label>
+                                <input type="file" placeholder="Enter Profile Image" value="" name="image" id="image">
+                                <input type="hidden" placeholder="" value="<%- user.image %>" name="hidden_image" id="hidden_image">
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <label for="image">Skills</label>
+                                <select id="multiple" name="skill" value="<%- user.skills %>" required class="input-group js-select2-multi js-states form-control" multiple>
+                                        <% if((jobs_results!= undefined)) { %>
+                                            <% jobs_results.forEach(function(jobs_result) { %>
+                                                <% if(isskillsstatus) { %>
+                                                    <%var skill = JSON.parse(user.skills)%>
+                                                    <% if(skill.includes(jobs_result.id.toString())) { %>
+                                                        <option value="<%- jobs_result.id %>" selected><%- jobs_result.name %></option>
+                                                    <% }else { %>
+                                                        <option value="<%- jobs_result.id %>"><%- jobs_result.name %></option>
+                                                    <% } %>
+                                                <% }else { %>
+                                                    <option value="<%- jobs_result.id %>"><%- jobs_result.name %></option>
+                                                <% } %>
+                                            <% }); %>
+                                        <% } else { %><p>no data uploaded</p> <% } %>
+    
+                                    </select>
+                            </div>
+                            <div class="col-md-6 mb-4">
+                                <% if(user.image == null || user.image == '') { %>
+                                    <img src="<%=baseURL%>/assets/images/avatar.png" alt="" style="width: 200px;">
+                                    <% } else { %>
+                                        <img src="<%=baseURL%>/avatars/<%= user.image %>" alt="" style="width: 200px;">
+                                        <% } %>
+                            </div>
+                            <div class="col-md-6 mb-4">
+
+                                <% if(team_name != null && team_name != '') { %>
+                                    <label>Member of team</label>
+                                    <input type="text" disabled value="<%= team_name %>" name="team_name" id="team_name" class="form-control">
+                                    <% } %>
+                            </div>
+                            <div class="col-md-12 mb-4">
+                                <button type="submit" class="btn btn-primary">Update</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- bodywrapper__inner end -->
+        </div>
+        <!-- body-wrapper end -->
+    </div>
+    <%- include('../layouts/footer.ejs') %>

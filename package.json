@@ -1,0 +1,39 @@
+{
+  "name": "freelancer_marketing",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "nodemon index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
+  "description": "",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "bcryptjs": "^2.4.3",
+    "chart.js": "^3.9.1",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.0.1",
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "express-ejs-layouts": "^2.5.1",
+    "jsonwebtoken": "^8.5.1",
+    "multer": "^1.4.5-lts.1",
+    "mysql": "^2.18.1",
+    "node-cron": "^3.0.2",
+    "node-fetch": "^3.2.10",
+    "node-geocoder": "^4.2.0",
+    "nodemailer": "^6.7.7",
+    "path": "^0.12.7",
+    "powerbi-visuals-utils-chartutils": "^2.6.0",
+    "rand-token": "^1.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.18",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
+  }
+}

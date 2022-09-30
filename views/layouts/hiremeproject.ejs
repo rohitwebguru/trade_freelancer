@@ -1,0 +1,106 @@
+<%- include('../layouts/header.ejs') %>
+
+    <div class="body-wrapper">
+        <div class="bodywrapper__inner">
+            <a href="/managingproject" class="btn btn-sm btn--primary icon-btn mb-3"><i class="fa fa-fw fa-reply"></i>Back</a>
+        </div>
+        <form action="/hiremeproject" method="post">
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <label for="input-hireme-title">Title</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="input-hireme-title" value="" name="input_hireme_title" placeholder="Fix my PHP website">
+                        <div class="invalid-feedback">Enter Title</div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <label for="input-localjobproject-budget">Minimum Budget</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="input-localjobproject-budget" value="" name="minbudget" placeholder="Should be greater than $50 AUD.">
+                        <div class="invalid-feedback">Enter Minimum Budget</div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <label for="input-localjobproject-budget">Maximum Budget</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="input-localjobproject-budget" value="" name="maxbudget" placeholder="Should be lesser than $100 AUD.">
+                        <div class="invalid-feedback">Enter Maximum Budget</div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="input-group">
+                        <label for="input-hireme-description">Description</label>
+                        <div class="input-group">
+                            <textarea type="text" class="form-control" id="input-hireme-description" value="" rows="5" name="input_hireme_description" placeholder="I wrote a small website in PHP but it does not work. I someone to fix it."></textarea>
+                            <div class="invalid-feedback">Enter Description</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <label for="input-localjobproject-input_currency">Currency</label>
+                    <select name="input_currency" required class="input-group form-control">
+                        <% if((currency_results.currencies!= undefined)) { %>
+                            <% currency_results.currencies.forEach(function(currency) { %>
+                                <option value="<%- currency.id %>"><%- currency.name %></option>
+                            <% }); %>
+                        <% } else { %><p>no data uploaded</p> <% } %>
+                    </select>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <label for="input-hireme-skill">Skill</label>
+                    <select id="multiple" name="skill_fixed" required class="input-group js-select2-multi js-states form-control" multiple>
+                        <% if((jobs_results!= undefined)) { %>
+                            <% jobs_results.forEach(function(jobs_result) { %>
+                                <option value="<%- jobs_result.id %>"><%- jobs_result.name %></option>
+                            <% }); %>
+                        <% } else { %><p>no data uploaded</p> <% } %>
+                    </select>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <label for="input-hireme-select">Hireme</label>
+                    <select name="filter_hireme_site_project" id="filter_hireme_site_project" class="form-control mr-2" onchange="hiremechangeDDL()">
+                        <option value="">-- Select --</option>
+                        <option value="project-true">True</option>
+                        <option value="project-false">False</option>
+                    </select>
+                    <div class="col-md-12 mt-3" id="project-true" style='display:none'>
+                        <div class="row">
+                            <div class="col-md-3 mb-4">
+                                <label for="input-hireme-select">Choose Freelancer</label>
+                                <select name="bidder_id" id="chooses_freelancer_for_hireme" class="form-control mr-2">
+                                    <option value="0">-- Select --</option>
+                                    <% if(freelancers != "" && freelancers != undefined){ %>
+                                        <% var freelancers = Object.keys(freelancers).map((key) => [Number(key), freelancers[key]]); %>
+                                        <% for(var i=0;i<freelancers.length;i++){ %>
+                                            <option value="<%= freelancers[i][0]%>"><%= freelancers[i][1].username%></option>
+                                        <% } %>
+                                    <% }else{ %>
+                                        
+                                    <% } %>
+                                </select>
+                            </div>
+                            <div class="col-md-3 mb-4">
+                                <label for="input-bidder-amount">Amount</label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control" id="input-bidder-amount" value="" name="input_bidder_amount" placeholder="300">
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-4">
+                                <label for="input-bidder-period">Period</label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control" id="input-bidder-period" value="" name="input_bidder_period" placeholder="1">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 mt-3" id="project-false" style="display: none"></div>
+                </div>
+
+
+                <div class="col-md-12 mb-4">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+
+        </form>
+        </div>
+        <%- include('../layouts/footer.ejs') %>

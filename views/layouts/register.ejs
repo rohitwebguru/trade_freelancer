@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="apple-touch-icon" sizes="76x76" href="<%=baseURL%>/assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="<%=baseURL%>/assets/images/logoIcon/logo.png">
+    <title>
+        Freelancer Marketing
+    </title>
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link href="<%=baseURL%>/assets/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="<%=baseURL%>/assets/css/line-awesome.min.css" rel="stylesheet">
+    <!-- Styles -->
+    <link href="<%=baseURL%>/assets/css/app.css" rel="stylesheet">
+    <link href="<%=baseURL%>/assets/css/custom.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="page-wrapper default-version">
+        <div class="body-wrapper-main">
+            <div class="bodywrapper__inner">
+                <div class="form-area bg_img" data-background="<%=baseURL%>/assets/images/1.jpg">
+                    <div class="form-wrapper">
+                        <h4 class="logo-text mb-15">Welcome to Freelancer Marketing</strong>
+                        </h4>
+                        <p>Register to Freelancer Marketing</p>
+                        <form onsubmit="return false;" id="form" class="cmn-form mt-30">
+                            <div class="form-group">
+                                <label>Choose your role</label>
+                                <div class="row">
+                                    <div class="payment-list col-lg-6 col-xs-12">
+                                        <div class="form-check">
+                                            <label class="form-check-label" style="color: #000 !important;">
+                                                <div class="crpto-currency-box active">
+                                                    <img style="width:auto; height:32px;" src="<%=baseURL%>/assets/images/register/seller.png">
+                                                    <h3 class="boldy">Work as Seller</h3>
+                                                    <span class="checky-box"><i class="las la-check-circle"></i></span>
+                                                    <input type="radio" class="form-check-input role" name="role" id="role" value="2" checked style="display:none;">
+                                                </div>
+                                            </div>
+                                        </label>
+                                        </div>
+                                        <div class="payment-list col-lg-6 col-xs-12">
+                                            <div class="form-check">
+                                                <label class="form-check-label" style="color: #000 !important;">
+                                                <div class="crpto-currency-box">
+                                                    <img style="width:auto; height:32px;" src="<%=baseURL%>/assets/images/register/freelancer.png">
+                                                    <h3 class="boldy">Work as Freelancer</h3>
+                                                    <span class="checky-box"><i class="las la-check-circle"></i></span>
+                                                    <input type="radio" class="form-check-input role" name="role" id="role" value="3" style="display:none;">
+                                                </div>
+                                            </div>
+                                        </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="username">Username</label>
+                                        <input type="text" name="username" class="form-control b-radius--capsule" id="username" value="" placeholder="Enter your username" required>
+                                        <i class="las la-user input-icon"></i>
+                                        <span id="username-error"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">Email</label>
+                                        <input type="text" name="email" class="form-control b-radius--capsule" id="email" value="" placeholder="Enter your email" required>
+                                        <i class="las la-user input-icon"></i>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="pass">Password</label>
+                                        <input type="password" name="password" class="form-control b-radius--capsule" id="password" placeholder="Enter your password" required>
+                                        <i class="las la-lock input-icon"></i>
+                                    </div>
+
+                                    <input type="hidden" name="token" id="token" value="<%=token%>">
+
+                                    <div class="form-group">
+                                        <label for="pass">Confirm Password</label>
+                                        <input type="password" name="cpassword" class="form-control b-radius--capsule" id="cpassword" placeholder="Enter your confirm password" required>
+                                        <i class="las la-lock input-icon"></i>
+                                    </div>
+                                    <div class="alert alert-danger" role="alert" id="error" style="display:none;"></div>
+                                    <div class="alert alert-success" role="alert" id="success" style="display:none;"></div>
+                                    <div class="form-group">
+                                        <button type="submit" class="submit-btn mt-25 b-radius--capsule">Submit<i class="las la-sign-in-alt"></i></button>
+                                    </div>
+                                    <div class="form-group text-center mt-4">
+                                        <a href="/" class="btn btn-sm btn--primary icon-btn mb-3"><i class="las la-reply"></i>Back</a>
+                                    </div>
+                        </form>
+                        </div>
+                        </div>
+                        <!-- login-area end -->
+
+                    </div>
+                    <!-- bodywrapper__inner end -->
+                </div>
+                <!-- body-wrapper end -->
+            </div>
+            <script src="<%=baseURL%>/assets/js/bootstrap.min.js"></script>
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js" type="text/javascript"></script>
+            <script src="<%=baseURL%>/assets/js/app.js"></script>
+            <script src="<%=baseURL%>/assets/js/signup.js"></script>
+</body>
+
+</html>

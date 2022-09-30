@@ -1,0 +1,122 @@
+<%- include('../layouts/header.ejs') %>
+    <div class="body-wrapper">
+        <div class="bodywrapper__inner">
+            <div class="row">
+                <div class="col-2">
+                    <a href="/addproject" class="btn btn-sm btn--primary box--shadow1 text--small addBtn mt-1"><i class="fa fa-fw fa-plus"></i>Add New</a>
+                </div>
+                <div class="col-10">
+                    <form action="" method="GET" role="search">
+                        <div class="input-group">
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control mr-2" name="filter_title_name" placeholder="Search" value="" id="filter_title_name">
+                            </div>
+                            <div class="col-sm-2">
+                                <button class="btn btn-info" type="submit" title="Search Sites">
+                                <i class="la la-search"></i>
+                            </button>
+                                <button class="btn btn-danger" type="button" id="reset_site_filter" title="Refresh page">
+                                <i class="las la-redo-alt"></i>
+                            </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-lg-12 my-4">
+                    <div class="card b-radius--10 ">
+                        <div class="card-body p-0">
+                            <div class="table-responsive--md  table-responsive">
+                                <table class="table table--light style--two">
+                                    <thead>
+                                        <tr>
+                                            <th>Title</th>
+                                            <th>Description</th>
+                                            <th>Budget <br> Minimum | Maximum</th>
+                                            <th>Skill</th>
+                                            <th>type</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="creating-project-table">
+                                        <% for(var i=0; i < result.length; i++) { %>
+                                            <tr onclick="OpenProject(<%= result[i].id %>)" style="cursor: pointer;">
+                                                <td>
+                                                    <%= result[i].title %>
+                                                </td>
+                                                <td>
+                                                    <%= result[i].description.substr(0, 40) %>........
+                                                </td>
+                                                <td>
+                                                    <%= JSON.parse(result[i].budget).minimum %> &nbsp;&nbsp;|&nbsp;&nbsp;
+                                                        <%= JSON.parse(result[i].budget).maximum %>
+                                                </td>
+                                                <td>
+                                                    <% var skillset = JSON.parse(result[i].jobs) %>
+                                                        <% for(var j=0; j< skillset.length; j++) {%>
+                                                            <%= skillset[j].name %> &nbsp;&nbsp;
+                                                                <% } %>
+
+                                                </td>
+                                                <td>
+                                                    <%= result[i].type %>
+                                                </td>
+                                                <td data-label="Action">
+                                                    <a class="icon-btn btn--primary ml-1 addBtn" id="updateCreateProject_<%=result[i].id %>" onclick="updateCreateProject('<%=result[i].id %>')"><i class="la la-pen" style="color: white;"></i></a>
+                                                    <a href="/creatingproject/delete/<%= result[i].id %>" class="icon-btn btn--danger ml-1 SiteDelete"><i class="las la-trash"></i></a>
+                                                </td>
+                                            </tr>
+                                            <% } %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="editCreateModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Update Project</h5>
+                                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/creatingproject/update/" method="post" enctype="multipart/form-data" id="creatingprojectupdate">
+                                    <input type="hidden" name="creatingprojectid" id="creatingprojectid" value="" />
+                                    <div class="form-group">
+                                        <label for="project_title">Title</label>
+                                        <input type="text" name="project_title" id="project_title" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="description">Description</label>
+                                        <textarea rows="7" type=" text " name="description" id="description" class="form-control "></textarea>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="min_budget ">Min Budget</label>
+                                        <input type="number " name="min_budget " id="min_budget" class="form-control ">
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="max_budget ">Max Budget</label>
+                                        <input type="number " name="max_budget " id="max_budget" class="form-control ">
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="skills ">Skill</label>
+                                        <select id="multiple" name="skill_fixed" class="input-group js-select2-multi js-states form-control " multiple>
+                                           
+                                        </select>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="types ">Type</label>
+                                        <input type="text " name="types " id="types " class="form-control ">
+                                    </div>
+                                    <button id="submit_update " name="submit_update " type="submit " class="btn btn-primary ">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('../layouts/footer.ejs') %>

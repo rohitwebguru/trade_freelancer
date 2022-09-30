@@ -1,0 +1,117 @@
+<%- include('../layouts/header.ejs') %>
+    <div class="body-wrapper">
+        <div class="bodywrapper__inner">
+            <div class="row">
+                <div class="col-lg-12 mt-3">
+                    <div class="card b-radius--10 ">
+                        <div class="card-body p-0">
+                            <div class="table-responsive--md  table-responsive">
+                                <table class="table table--light style--two">
+                                    <thead>
+                                        <tr>
+                                            <th>Operation By</th>
+                                            <th>Title</th>
+                                            <th>Operation</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <% if(user.role_id == 2) {%>
+                                        <tbody id="manage-project-table">
+                                            <% 
+                                    if(project_approval.length > 0) { 
+                                        for(var i=0; i < project_approval.length; i++) { %>
+                                                <tr onclick="openProjectToManageProposal(<%= project_approval[i].project_id %> , <%= project_approval[i].proposal_id %>)" style="cursor: pointer;" id="operation_row_id_<%= project_approval[i].id %>">
+                                                    <td>
+                                                        <%= project_approval[i].username %>
+                                                    </td>
+                                                    <td>
+                                                        <%= project_approval[i].title %>
+                                                    </td>
+                                                    <td>
+                                                        Project Posting
+                                                    </td>
+                                                    <td data-label="Action">
+                                                        <div class="project-proposal">
+                                                            <button class="btn btn-success mr-2 project-approval-status-btn" data-status="1" data-pid="<%= project_approval[i].id %>" data-pstatus="<%= project_approval[i].type %>">Accept</button>
+                                                            <button class="btn btn-danger ml-2 project-approval-status-btn" data-status="2" data-pid="<%= project_approval[i].id %>" data-pstatus="<%= project_approval[i].type %>">Reject</button>
+                                                            <a href="/addproject/<%= project_approval[i].id %>" class="btn btn-primary ml-2"><i class="fa fa-eye"></i></a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <% } 
+                                        } else { %>
+                                                    <tr style="cursor: pointer;">
+                                                        <td>
+                                                            No records found!
+                                                        </td>
+                                                    </tr>
+                                                    <% } %>
+                                        </tbody>
+                                        <% }else{ %>
+                                            <tbody id="manage-project-table">
+                                                <% 
+                                    if(pendingProposalList.length > 0) { 
+                                        for(var i=0; i < pendingProposalList.length; i++) { %>
+                                                    <tr onclick="openProjectToManageProposal(<%= pendingProposalList[i].project_id %> , <%= pendingProposalList[i].proposal_id %>)" style="cursor: pointer;">
+                                                        <td>
+                                                            <%= pendingProposalList[i].username %>
+                                                        </td>
+                                                        <td>
+                                                            Bidding
+                                                        </td>
+                                                        <td data-label="Action">
+                                                            <a class="icon-btn btn--danger ml-1 SiteDelete"><i class="fas fa-eye" style="color:white;"></i></a>
+                                                        </td>
+                                                    </tr>
+                                                    <% } 
+                                        } else { %>
+                                                        <tr style="cursor: pointer;">
+                                                            <td>
+                                                                No records found!
+                                                            </td>
+                                                        </tr>
+                                                        <% } %>
+                                            </tbody>
+                                            <% } %>
+                                </table>
+                            </div>
+                        </div>
+                        <% if(project_approval_length2 > 1) { %>
+                        <div class="card-footer"  style="display: flex;">
+                            <div class="dataTables_paginate col-sm-6">
+                                <ul class="pagination" style="float: left;">
+                                    Total Records: <%= project_approval_length %>
+                                </ul>
+                            </div>
+                            <div class="dataTables_paginate col-sm-6">
+                                <ul class="pagination">
+                                    <% for (var i=1; i<=project_approval_length2; i++) {
+                                        if(currentpage == undefined && i == 1){ %>
+                                            <li class="page-item active">
+                                                <a class="page-link" href="?page=<%= i %>">
+                                                    <%= i %>
+                                                </a>
+                                            </li>
+                                        <% }else if (i==currentpage) { %>
+                                        <li class="page-item active">
+                                            <a class="page-link" href="?page=<%= i %>">
+                                                <%= i %>
+                                            </a>
+                                        </li>
+                                        <% }else{ %>
+                                            <li class="page-item">
+                                                <a class="page-link" href="?page=<%= i %>">
+                                                    <%= i %>
+                                                </a>
+                                            </li>
+                                            <% } } %>
+                                </ul>
+                            </div>
+                        </div>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('../layouts/footer.ejs') %>

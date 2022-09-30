@@ -1,0 +1,96 @@
+<%- include('../layouts/header.ejs') %>
+    <div class="body-wrapper">
+        <div class="bodywrapper__inner">
+            <div class="row">
+                <div class="col-lg-8 my-4">
+                    <input type="search" name="searchInAllProjects" id="searchInAllProjects" class="form-control" placeholder="Search Projects">
+                </div>
+                <div class="col-lg-4 my-4">
+                    <div class="filter-section d-flex align-items-center">
+                        <select name="all_project_type" id="all_project_type" class="mr-3">
+                            <option value="0">Choose Project Type</option>
+                            <option value="fixed">Fixed Projects</option>
+                            <option value="hourly">Hourly Projects</option>
+                            <option value="local">Local Projects</option>
+                        </select>
+                        <div class="show-no-records-mp d-flex align-items-center">
+                            <div class="mr-3">Show: </div>
+                            <select name="numberofrows" id="numberofrows">
+                                <option value="10">10</option>
+                                <option value="20">20</option>
+                                <option value="30">30</option>
+                                <option value="40">40</option>
+                                <option value="50">50</option>
+                            </select>
+                        </div>
+                        <div class="filter-managing-project d-flex align-items-center ml-3">
+                            <div class="mr-3">View: </div>
+                            <select name="showrecords" id="">
+                                <option value="all">All</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="card b-radius--10 ">
+                        <div class="card-body p-0">
+                            <div class="table-responsive--md  table-responsive">
+                                <table class="table table--light style--two">
+                                    <thead>
+                                        <tr>
+                                            <th>Title</th>
+                                            <th>Description</th>
+                                            <th>Budget <br> Minimum | Maximum</th>
+                                            <th>Skill</th>
+                                            <th>type</th>
+                                            <th>Messages</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="all-projects">
+
+                                        <% for(var i=0; i < result.length; i++) { %>
+                                            <tr style="cursor: pointer;" onclick="OpenProject(<%= result[i].id %>)">
+                                                <td>
+                                                    <%= result[i].title %>
+                                                </td>
+                                                <td>
+                                                    <%= result[i].description.substr(0, 40) %>
+                                                </td>
+                                                <td>
+                                                    <%= JSON.parse(result[i].budget).minimum %> &nbsp;&nbsp;|&nbsp;&nbsp;
+                                                        <%= JSON.parse(result[i].budget).maximum %>
+                                                </td>
+                                                <td>
+                                                    <% if(result[i].skill!=undefined) { %>
+                                                        <% var skillset = JSON.parse(result[i].skill) %>
+                                                            <% for(var j=0; j< skillset.length; j++) {%>
+                                                                <%= skillset[j].name %> &nbsp;&nbsp;
+                                                                    <% }%>
+                                                                        <% } %>
+                                                                            <% if(result[i].jobs!=undefined) { %>
+                                                                                <% var skillset = JSON.parse(result[i].jobs) %>
+                                                                                    <% for(var j=0; j< skillset.length; j++) {%>
+                                                                                        <%= skillset[j].name %> &nbsp;&nbsp;
+                                                                                            <% }%>
+                                                                                                <% } %>
+                                                </td>
+                                                <td>
+                                                    <%= result[i].type %>
+                                                </td>
+                                                <td>
+                                                    <a href="/messages/<%= result[i].id %>" class="btn btn-warning">Messages 🟢</a>
+                                                </td>
+                                            </tr>
+                                            <% } %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <%- include('../layouts/footer.ejs') %>

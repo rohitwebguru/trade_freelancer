@@ -1,0 +1,684 @@
+<%- include('../layouts/header.ejs') %>
+
+    <div class="body-wrapper">
+        <div class="bodywrapper__inner" id="dashboard">
+
+            <% if(user.role_id == 1){ %>
+                <div class="row">
+                    <div class="col-lg-4 col-sm-6">
+                        <!-- <input type="hidden" id="userrole_id" value="<%= user.role_id %>"> -->
+                        <div class="card-stats card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-5">
+                                        <div class="icon-big text-center icon-warning">
+                                            <i class="menu-icon las la-users-cog"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-7">
+                                        <div class="numbers">
+                                            <p class="card-category">Total Projects</p>
+                                            <h4 class="card-title">
+                                                <%= totalprojects %>
+                                            </h4>
+                                            <input type="hidden" id="totalprojectsChart" value="<%= totalprojects %>">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <% if(project!= undefined) { %>
+                                        <% var date = project %>
+                                            <i class="fas fa-redo mr-1"></i>Updated At
+                                            <%= date.toString().substr(4,12) %>
+                                                <% } %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6">
+                        <div class="card-stats card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-5">
+                                        <div class="icon-big text-center icon-warning">
+                                            <i class="menu-icon las la-users-cog"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-7">
+                                        <div class="numbers">
+                                            <p class="card-category">Total Freelancers</p>
+                                            <h4 class="card-title">
+                                                <%= totalfreelancers %>
+                                            </h4>
+                                            <input type="hidden" id="totalfreelancersChart" value="<%= totalfreelancers %>">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <% if(freelancer!= undefined) { %>
+                                        <% var date = freelancer %>
+                                            <i class="fas fa-redo mr-1"></i>Updated At
+                                            <%= date.toString().substr(4,12) %>
+                                                <% } %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6">
+                        <div class="card-stats card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-5">
+                                        <div class="icon-big text-center icon-warning">
+                                            <i class="menu-icon las la-users-cog"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-7">
+                                        <div class="numbers">
+                                            <p class="card-category">Total Clients</p>
+                                            <h4 class="card-title">
+                                                <%= totalclients %>
+                                            </h4>
+                                            <input type="hidden" id="totalclientsChart" value="<%= totalclients %>">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <% if(clients!= undefined) { %>
+                                        <% var date = clients %>
+                                            <i class="fas fa-redo mr-1"></i>Updated At
+                                            <%= date.toString().substr(4,12) %>
+                                                <% } %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-sm-12 col-md-12 col-xs-12">
+                        <div class="card bg-gradient-info">
+                            <div class="card-body">
+                                <canvas id="myChart" style="min-height: 250px;height: 250px;max-height: 250px;max-width: 100%;display: block;width: 627px;"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-sm-12 col-md-12 col-xs-12">
+                        <div class="card bg-gradient-info">
+                            <div class="card-body">
+                                <canvas id="chartContainer" style="min-height: 250px;height: 250px;max-height: 250px;max-width: 100%;display: block;width: 627px;"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <% }else if(user.role_id == 2){ %>
+                    <div class="row">
+                        <div class="col-lg-9" id="client-dashboard">
+                            <div class="col-lg-12 mb-4">
+                                <div class="client-dashboard">
+                                    <div class="dashboard-heading">
+                                        <h2>Your Dashboard</h2>
+                                        <h5>
+                                            <%= user.username %>
+                                        </h5>
+                                    </div>
+                                    <div class="post-job-btn">
+                                        <a href="/addproject">Post a job</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-8">
+                                <div class="card b-radius--10 ">
+                                    <div class="card-header p-4" id="client-postings">
+                                        <div class="card-heading">
+                                            <h3>Your Postings</h3>
+                                        </div>
+                                        <div class="see-all-postings">
+                                            <a style="cursor: pointer;" id="see-all-client-posting">See all postings</a>
+                                        </div>
+                                    </div>
+                                    <div class="card-body p-0 " id="clients-all-projects">
+                                        <% for(var i=0; i < clientprojects.length; i++) { %>
+                                            <div class="project-box p-4" onclick="OpenProject(<%= clientprojects[i].id %>)" style="cursor: pointer;">
+                                                <div class="project-title mb-3">
+                                                    <h3>
+                                                        <%= clientprojects[i].title %>
+                                                    </h3>
+                                                </div>
+                                                <div class="project-description">
+                                                    <div class="project-info" style="color: #3c3c3c;display: flex;flex-direction: column;">
+                                                        <div class="project_type">
+                                                            <%= clientprojects[i].type %> - price
+                                                        </div>
+                                                        <div class="posted_on">
+                                                            Posted on:
+                                                            <% var date = clientprojects[i].submitdate %>
+                                                                <%= date.toString().substr(4,12) %>
+                                                        </div>
+                                                    </div>
+                                                    <div class="project-proposal-info">
+                                                        <div class="project-proposal">
+                                                            <h5>
+                                                                <%= clientprojects[i].bid_stats.bid_count %>
+                                                            </h5>
+                                                            <p>Proposals</p>
+                                                        </div>
+                                                        <div class="messages">
+                                                            <h5>3</h5>
+                                                            <p>Messaged</p>
+                                                        </div>
+                                                        <div class="hired">
+                                                            <h5>
+                                                                0
+                                                            </h5>
+                                                            <p>Hired</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <% } %>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="dataTables_paginate">
+                                            <ul class="pagination">
+                                                <% for (var i=1; i<=total_pages2; i++) {
+                                                    if(currentpage == undefined && i == 1){ %>
+                                                        <li class="page-item active">
+                                                            <a class="page-link" href="?page=<%= i %>">
+                                                                <%= i %>
+                                                            </a>
+                                                        </li>
+                                                    <% }else if (i==currentpage) { %>
+                                                    <li class="page-item active">
+                                                        <a class="page-link" href="?page=<%= i %>">
+                                                            <%= i %>
+                                                        </a>
+                                                    </li>
+                                                    <% }else{ %>
+                                                        <li class="page-item">
+                                                            <a class="page-link" href="?page=<%= i %>">
+                                                                <%= i %>
+                                                            </a>
+                                                        </li>
+                                                        <% } } %>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-8">
+                                <div class="card b-radius--10 ">
+                                    <div class="card-header p-4" id="client-postings">
+                                        <div class="card-heading">
+                                            <h3>Approval Postings</h3>
+                                        </div>
+                                        <div class="see-all-postings">
+                                            <a href="/manageoperations" style="cursor: pointer;" id="see-all-client-posting">See all postings</a>
+                                        </div>
+                                    </div>
+                                    <div class="card-body p-0 " id="clients-all-projects">
+                                        <% for(var i=0; i < project_approval.length; i++) { %>
+                                            <div class="project-box p-4" id="row_id_<%= project_approval[i].id %>">
+                                                <div class="project-title mb-3">
+                                                    <h3>
+                                                        <%= project_approval[i].title %>
+                                                    </h3>
+                                                </div>
+                                                <div class="project-description">
+                                                    <div class="project-info" style="color: #3c3c3c;display: flex;flex-direction: column;">
+                                                        <div class="project_type">
+                                                            <% if(project_approval[i].type!= ''){ %>
+                                                                <%= project_approval[i].type %>
+                                                                    <% } %>
+                                                                        - price
+                                                        </div>
+                                                        <div class="posted_on">
+                                                            Posted on:
+                                                            <% var date = project_approval[i].created_at %>
+                                                                <%= date.toString().substr(4,12) %>
+                                                        </div>
+                                                    </div>
+                                                    <div class="project-proposal-info">
+                                                        <div class="project-proposal">
+                                                            <h5>
+                                                                <%= JSON.parse(project_approval[i].budget).minimum %> |
+                                                                    <%= JSON.parse(project_approval[i].budget).maximum %>
+                                                            </h5>
+                                                        </div>
+                                                    </div>
+                                                    <div class="project-proposal-info">
+                                                        <div class="project-proposal">
+                                                            <button class="btn btn-success mr-2 project-approval-status-btn" data-status="1" data-pid="<%= project_approval[i].id %>" data-pstatus="<%= project_approval[i].type %>">Accept</button>
+                                                            <button class="btn btn-danger ml-2 project-approval-status-btn" data-status="2" data-pid="<%= project_approval[i].id %>" data-pstatus="<%= project_approval[i].type %>" data-pstatus="<%= project_approval[i].type %>">Reject</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <% } %>
+                                    </div>
+                                    <!-- <div class="card-footer">
+                                        <div class="dataTables_paginate">
+                                            <ul class="pagination">
+                                                <% for (var i=1; i<=project_total_pages2; i++) { 
+                                                            if (i==currentpage) { %>
+                                                    <li class="page-item active">
+                                                        <a class="page-link" href="?page=<%= i %>">
+                                                            <%= i %>
+                                                        </a>
+                                                    </li>
+                                                    <% }else{ %>
+                                                        <li class="page-item">
+                                                            <a class="page-link" href="?page=<%= i %>">
+                                                                <%= i %>
+                                                            </a>
+                                                        </li>
+                                                        <% } } %>
+                                            </ul>
+                                        </div>
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <% }else if(user.role_id == 3){ %>
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <div class="filter-section">
+                                    <div class="filter-section">
+                                        <div class="filter-heading">
+                                            <h2 style="font-weight: 800;">Filter By :</h2>
+                                        </div>
+                                        <!-- <div class="filter-by-exp my-4">
+                                            <div class="filter-by-exp-heading">
+                                                <h3>Experience Level</h3>
+                                            </div>
+                                            <div class="choose-experience my-3">
+                                                <div class="form-group">
+                                                    <input type="checkbox" name="entry" id="entry-level-exp" value="Entry Level"> &nbsp; Entry Level
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="checkbox" name="entry" id="entry-level-exp" value="Intermediate Level"> &nbsp; Intermediate
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="checkbox" name="entry" id="entry-level-exp" value="Expert Level"> &nbsp; Expert
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="filter-by-exp my-4">
+                                            <div class="filter-by-exp-heading">
+                                                <h3>Number of Proposals</h3>
+                                            </div>
+                                            <div class="choose-experience my-3">
+                                                <div class="form-group">
+                                                    <input type="checkbox" name="entry" id="entry-level-exp" value="5"> &nbsp; Less than 5
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="checkbox" name="entry" id="entry-level-exp" value="5to10"> &nbsp; 5 to 10
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="checkbox" name="entry" id="entry-level-exp" value="10to15"> &nbsp; 10 to 15
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="checkbox" name="entry" id="entry-level-exp" value="15to20"> &nbsp; 15 to 20
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="checkbox" name="entry" id="entry-level-exp" value="20to50"> &nbsp; 20 to 50
+                                                </div>
+                                            </div>
+                                        </div> -->
+
+                                        <div class="choose project-type-freelancer-filters my-4">
+                                            <h3><strong>Project Type</strong></h3>
+                                            <div class="project-type-freelancer-dashboard my-3">
+                                                <div class="form-group d-flex align-items-center">
+                                                    <input type="checkbox" name="p_type" class="p_htype p_type" value="hourly"> &nbsp; <span>Hourly</span>
+                                                </div>
+                                                <div class="form-group d-flex align-items-center">
+                                                    <input type="checkbox" name="p_type" class="p_ftype p_type" value="fixed"> &nbsp; <span>Fixed</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="choose fixed-price-freelancer-filters my-5">
+                                            <h3><strong>Fixed Price</strong></h3>
+                                            <div class="fixed-price-freelancer-dashboard my-2">
+                                                <div class="form-group">
+                                                    <label for="">min</label>
+                                                    <input type="number" name="fp_min" id="fp_min" class="form-control">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="">max</label>
+                                                    <input type="number" name="fp_max" id="fp_max" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="choose fixed-price-freelancer-filters my-5">
+                                            <h3><strong>Hourly</strong></h3>
+                                            <div class="fixed-price-freelancer-dashboard my-2">
+                                                <div class="form-group">
+                                                    <label for="">min</label>
+                                                    <input type="number" name="hourly_min" id="hourly_min" class="form-control">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="">max</label>
+                                                    <input type="number" name="hourly_max" id="hourly_max" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="choose listing-type-freelancer-filters my-5">
+                                            <h3><strong>Listing Type</strong></h3>
+                                            <div class="listing-type-freelancer-dashboard my-3">
+                                                <div class="form-group d-flex align-items-center">
+                                                    <input type="checkbox" name="listtype" class="listtype" value="featured"> &nbsp; <span>Featured</span>
+                                                </div>
+                                                <div class="form-group d-flex align-items-center">
+                                                    <input type="checkbox" name="listtype" class="listtype" value="sealed"> &nbsp; <span>Sealed</span>
+                                                </div>
+                                                <div class="form-group d-flex align-items-center">
+                                                    <input type="checkbox" name="listtype" class="listtype" value="nda"> &nbsp; <span>NDA</span>
+                                                </div>
+                                                <div class="form-group d-flex align-items-center">
+                                                    <input type="checkbox" name="listtype" class="listtype" value="urgent"> &nbsp; <span>Urgent</span>
+                                                </div>
+                                                <div class="form-group d-flex align-items-center">
+                                                    <input type="checkbox" name="listtype" class="listtype" value="recruiter"> &nbsp; <span>Recruiter</span>
+                                                </div>
+                                                <div class="form-group d-flex align-items-center">
+                                                    <input type="checkbox" name="listtype" class="listtype" value="ip agreement"> &nbsp; <span>IP Agreement</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="choose projects-loc-freelancer-filters my-5">
+                                            <h3><strong>Project's Location</strong></h3>
+                                            <select name="search_freelancer_with_project_countries" required class="input-group js-select2-multi js-states form-control search_freelancer_with_project_countries" multiple>
+                                                <% if((countries!= undefined)) {  %>
+                                                    <% countries.forEach(function(country) { %>
+                                                        <option value="<%- country.name %>"><%- country.name %></option>
+                                                    <% }); %>
+                                                <% } else { %><p>no data uploaded</p> <%  } %>
+                                            </select>
+                                        </div>
+                                        <div class="choose clients-country-freelancer-filters my-5">
+                                            <h3><strong>Client's country</strong></h3>
+                                            <select name="search_freelancer_with_project_countries" required class="input-group js-select2-multi js-states form-control search_freelancer_with_project_countries" multiple>
+                                                <% if((countries!= undefined)) {  %>
+                                                    <% countries.forEach(function(country) { %>
+                                                        <option value="<%- country.name %>"><%- country.name %></option>
+                                                    <% }); %>
+                                                <% } else { %><p>no data uploaded</p> <%  } %>
+                                            </select>
+                                        </div>
+                                        <div class="choose languages-freelancer-filters my-5">
+                                            <h3><strong>Languages</strong></h3>
+                                            
+                                            <div class="languages-freelancer-dashboard my-2">
+                                                <div class="form-group">
+                                                    <input type="text" name="languages-freelancer-dashboard-native_element" id="languages-freelancer-dashboard-native_element" class="form-control languages-freelancer-dashboard-native_element">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-10">
+                                <div class="card b-radius--10 ">
+                                    <div class="card-header p-4">
+                                        <div class="search-saved-filter d-flex">
+                                            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                                                <li class="nav-item" role="presentation">
+                                                    <a class="nav-link <%= activeclass2 %>" id="pills-dashsearch-tab" data-toggle="pill" href="#pills-dashsearch" role="tab" aria-controls="pills-dashsearch" aria-selected="true">Search</a>
+                                                </li>
+                                                <li class="nav-item" role="presentation">
+                                                    <a class="nav-link <%= activeclass %>" id="pills-dashsaved-tab" data-toggle="pill" href="#pills-dashsaved" role="tab" aria-controls="pills-dashsaved" aria-selected="false">Saved</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <hr>
+                                        <div class="tab-content" id="pills-tabContent">
+                                            <div class="tab-pane fade show <%= activeclass2 %>" id="pills-dashsearch" role="tabpanel" aria-labelledby="pills-dashsearch-tab">
+                                                <div class="search-job">
+                                                    <div class="row d-flex">
+                                                        <div class="col-sm-10">
+
+                                                            <select id="search_freelancerproject" name="search_freelancer_with_search_skills_projects" required class="search_freelancer_with_search_skills_projects input-group js-select2-multi js-states form-control search_freelancer_with_search_skills" multiple>
+                                                                <% if((jobs_results!= undefined)) { %>
+                                                                    <% jobs_results.forEach(function(jobs_result) { %>
+                                                                        <option value="<%- jobs_result.id %>"><%- jobs_result.name %></option>
+                                                                    <% }); %>
+                                                                <% } else { %><p>no data uploaded</p> <% } %>
+                                                            </select>
+                                                            <span style="color: #4C4CA5;font-weight: 600;">Advanced Search</span>
+                                                        </div>
+                                                        <div class="col-sm-2 ">
+                                                            <button style="color: #4C4CA5;font-weight: 600;border: 1px solid #dfdddd;background-color: transparent;outline: 0;padding: 10px 15px;border-radius: 25px;margin-left: 10px;; ">Save Search</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="search-job mt-4 p-3">
+                                                    <div class="row d-flex justify-content-between">
+                                                        <div class="jobs-found">
+                                                            <b><%= result.length %></b> jobs found
+                                                        </div>
+                                                        <div class="sort-feature d-flex">
+                                                            <div class="sort-group">
+                                                                <label for="sort_jobs"><b> Sort: </b></label>
+                                                                <select name="sort_jobs" id="sort_jobs">
+                                                                <option value="Newest">Newest</option>
+                                                                <option value="Popular">Popular</option>
+                                                            </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="card-body p-0 freelancers-projects">
+                                                    <% for(var i=0; i < result.length; i++) { %>
+                                                        <div class="project-box p-4" data-pid="<%= result[i].id %>">
+                                                            <div class="row">
+                                                                <div class="col-sm-7" onclick="OpenProject(<%= result[i].id %>)" style="cursor: pointer;">
+                                                                    <div class="project-title" style="display: flex;justify-content: space-between;">
+                                                                        <h3>
+                                                                            <%= result[i].title %>
+                                                                        </h3>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-2">
+                                                                    <i class="far fa-heart saved-freelancer_<%= result[i].id %>" onclick="SavedProject(<%= result[i].id %>)" style="font-size: 25px;"></i>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <div class="bid-stats">
+                                                                        <div class="total-bids">
+                                                                            <h5>
+                                                                                <%= result[i].bid_stats.bid_count %> bids
+                                                                            </h5>
+                                                                        </div>
+                                                                        <div class="avg-bids ml-4">
+                                                                            <h5>
+                                                                                <%= Math.floor(result[i].bid_stats.bid_avg) %> (avg bid amount)
+                                                                            </h5>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="project-description d-flex flex-column mt-2">
+                                                                <div class="project-info mb-2" style="color: #3c3c3c;display: flex;">
+                                                                    <h5>Budget: $
+                                                                        <%= result[i].budget.minimum %> -
+                                                                            <%= result[i].budget.maximum %> USD
+                                                                    </h5>
+                                                                </div>
+                                                                <p>
+                                                                    <%= result[i].preview_description %>
+                                                                </p>
+                                                            </div>
+                                                            <div class="all-required-skills my-3">
+                                                                <% if(result[i].skill!=undefined) { %>
+                                                                    <% var skillset = JSON.parse(result[i].skill) %>
+                                                                        <% for(var j=0; j< skillset.length; j++) {%>
+                                                                            <div class="required-skill">
+                                                                                <%= skillset[j].name %>
+                                                                            </div>
+                                                                            <% }%>
+                                                                                <% } %>
+                                                                                    <% if(result[i].jobs!=undefined) { %>
+                                                                                        <% var skillset = JSON.parse(result[i].jobs) %>
+                                                                                            <% for(var j=0; j< skillset.length; j++) {%>
+                                                                                                <div class="required-skill">
+                                                                                                    <%= skillset[j].name %>
+                                                                                                </div>
+                                                                                                <% }%>
+                                                                                                    <% } %>
+                                                            </div>
+                                                        </div>
+                                                        <% } %>
+                                                            <div class="dataTables_paginate">
+                                                                <ul class="pagination">
+                                                                    <% for (var i=1; i<=total_pages; i++) { 
+                                                            if (i==currentpage) { %>
+                                                                        <li class="page-item active">
+                                                                            <a class="page-link" href="?page=<%= i %>">
+                                                                                <%= i %>
+                                                                            </a>
+                                                                        </li>
+                                                                        <% }else{ %>
+                                                                            <li class="page-item">
+                                                                                <a class="page-link" href="?page=<%= i %>">
+                                                                                    <%= i %>
+                                                                                </a>
+                                                                            </li>
+                                                                            <% } } %>
+                                                                </ul>
+                                                            </div>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane fade show <%= activeclass %>" id="pills-dashsaved" role="tabpanel" aria-labelledby="pills-dashsaved-tab">
+                                                <div class="card-body p-0 saved-freelancers-projects">
+                                                    <% for(var i=0; i < savedresult.length; i++) { %>
+                                                        <div class="project-box p-4" data-pid="<%= savedresult[i].id %>">
+                                                            <div class="row">
+                                                                <div class="col-sm-7" onclick="OpenProject(<%= savedresult[i].id %>)" style="cursor: pointer;">
+                                                                    <div class="project-title">
+                                                                        <h3>
+                                                                            <%= savedresult[i].title %>
+                                                                        </h3>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-2">
+                                                                    <i class="fas fa-heart saved-freelancer_<%= savedresult[i].id %>" onclick="RemovedSavedProject(<%= savedresult[i].id %>)" style="font-size: 25px;"></i>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <div class="bid-stats">
+                                                                        <div class="total-bids">
+                                                                            <h5>
+                                                                                <%= savedresult[i].bid_stats.bid_count %> bids
+                                                                            </h5>
+                                                                        </div>
+                                                                        <div class="avg-bids ml-4">
+                                                                            <h5>
+                                                                                <%= Math.floor(savedresult[i].bid_stats.bid_avg) %> (avg bid amount)
+                                                                            </h5>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="project-description d-flex flex-column mt-2">
+                                                                <div class="project-info mb-2" style="color: #3c3c3c;display: flex;">
+                                                                    <h5>Budget: $
+                                                                        <%= savedresult[i].budget.minimum %> -
+                                                                            <%= savedresult[i].budget.maximum %> USD
+                                                                    </h5>
+                                                                </div>
+                                                                <p>
+                                                                    <%= savedresult[i].preview_description %>
+                                                                </p>
+                                                            </div>
+                                                            <div class="all-required-skills my-3">
+                                                                <% if(savedresult[i].skill!=undefined) { %>
+                                                                    <% var skillset = JSON.parse(savedresult[i].skill) %>
+                                                                        <% for(var j=0; j< skillset.length; j++) {%>
+                                                                            <div class="required-skill">
+                                                                                <%= skillset[j].name %>
+                                                                            </div>
+                                                                            <% }%>
+                                                                                <% } %>
+                                                                                    <% if(savedresult[i].jobs!=undefined) { %>
+                                                                                        <% var skillset = JSON.parse(savedresult[i].jobs) %>
+                                                                                            <% for(var j=0; j< skillset.length; j++) {%>
+                                                                                                <div class="required-skill">
+                                                                                                    <%= skillset[j].name %>
+                                                                                                </div>
+                                                                                                <% }%>
+                                                                                                    <% } %>
+                                                            </div>
+                                                        </div>
+                                                        <% } %>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <% } %>
+        </div>
+        <div id="biddingmodal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-modal="true">
+            <div class="modal-dialog modal-confirm">
+                <div class="modal-content">
+                    <div class="modal-header flex-column" style="padding: 0;">
+                        <h4 class="modal-title w-100" style="font-size: 20px;margin: 0;">Place a Bid on this Project</h4>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">×</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="card b-radius--10 bidding-box" style="margin-top: 0;">
+                            <div class="card-body p-0">
+                                <div class="bidding-header">
+                                    <p>You will be able to edit your bid until the project is awarded to someone.</p><br>
+                                </div>
+                                <hr>
+                                <div class="bidding-body">
+                                    <div class="alert alert-danger" role="alert" id="error" style="display:none;"></div>
+                                    <div class="alert alert-success" role="alert" id="success" style="display:none;"></div>
+                                    <div class="bid-form">
+                                        <form method="post" name="placebid" id="placebid">
+                                            <input type="hidden" name="project_id" id="project_id">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <div class="form-group">
+                                                        <label>Bid Amount</label>
+                                                        <input type="number" name="bid_amount" id="bid_amount" class="form-control" placeholder="3450">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="form-group">
+                                                        <label>This project will be delivered in: </label>
+                                                        <input type="number" name="numberOfDays" id="numberOfDays" class="form-control" placeholder="7">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Describe your proposal: </label>
+                                                <textarea name="proposal" id="proposal" rows="10" class="form-control" placeholder="what makes you the best candidate for this project"></textarea>
+                                            </div>
+                                            <input type="submit" value="Place Bid" class="place-bid-btn">
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <%- include('../layouts/footer.ejs') %>

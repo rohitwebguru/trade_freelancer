@@ -1,0 +1,189 @@
+<%- include('../layouts/header.ejs') %>
+    <div class="body-wrapper-main">
+        <div class="bodywrapper__inner">
+            <div class="body-wrapper">
+                <div class="row mb-4">
+                    <div class="col-lg-12">
+                        <form onsubmit="return false" method="post" id="resetFunctionroles">
+                            <div class="input-group justify-content-start">
+                                <div class="col-sm-4 pl-0">
+                                    <a href="/addroles" class="btn btn-sm btn--primary box--shadow1 text--small addBtn mt-1"><i class="fa fa-fw fa-plus"></i>Add Roles</a>
+                                </div>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control mr-2" name="filter_title" placeholder="Role Title" value="" id="filter_role_title">
+                                </div>
+                                <div class="col-sm-4">
+                                    <button class="btn btn-info" type="submit" title="Search Roles">
+                                        <i class="la la-search"></i>
+                                    </button>
+                                    <button class="btn btn-danger" type="button" onclick="ResetFunction()" id="reset_role_filter" title="Refresh page"><i class="las la-redo-alt"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card b-radius--10">
+                            <div class="card-body p-0">
+                                <div class="table-responsive--md  table-responsive">
+                                    <table class="table table--light style--two">
+                                        <thead>
+                                            <tr>
+                                                <th>Title</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="roles-project-table">
+                                            <% for(var i=0; i< result.length; i++) { %>
+                                                <tr>
+                                                    <td>
+                                                        <%= result[i].role_title %>
+                                                    </td>
+                                                    <td data-label="Action">
+                                                        <a class="icon-btn btn--primary ml-1 addBtn" id="updateRoles_<%=result[i].id %>" onclick="updateRoles('<%=result[i].id %>')"><i class="la la-pen" style="color: white;"></i></a>
+                                                        <a onclick="deleteRoles('<%=result[i].id %>')" class="icon-btn btn--danger ml-1 SiteDelete"><i class="las la-trash"></i></a>
+                                                    </td>
+                                                </tr>
+                                                <% } %>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="editRolesModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Update Roles</h5>
+                                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body" id="edit-permission-modal">
+                                    <form method="post" id="updatedRolesType">
+                                        <input type="hidden" name="roles_id" id="roles_id" class="form-control">
+                                        <div class="form-group">
+                                            <label for="">Title</label>
+                                            <input type="text" name="roles_title" id="roles_title" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="">Permissions</label>
+                                            <div class="table-responsive--md  table-responsive" id="permission_module">
+                                                <table class="table style--two">
+                                                    <thead>
+                                                        <tr id="manage_sites">
+                                                            <td class="fw-bold cursor-pointer">Manage Projects:</td>
+                                                            <td class="d-flex justify-content-center"><i class="fas fa-angle-down arrow"></i></td>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="manage_sites_content">
+                                                        <tr>
+                                                            <td>
+                                                                <label for="project_id">Add</label>
+                                                            </td>
+                                                            <td class="d-flex justify-content-center"><input type="checkbox" id="project_id_add" value="1" name="project_id[7][project_module][]"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><label for="project_id">Edit</label></td>
+                                                            <td class="d-flex justify-content-center" id="update-7"><input type="checkbox" id="project_id_edit" value="2" name="project_id[7][project_module][]"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><label for="project_id">Delete</label></td>
+                                                            <td class="d-flex justify-content-center" id="del-7"><input type="checkbox" id="project_id_delete" value="3" name="project_id[7][project_module][]"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><label for="project_id">View</label></td>
+                                                            <td class="d-flex justify-content-center" id="edit-7"><input type="checkbox" id="project_id_view" value="4" name="project_id[7][project_module][]"></td>
+                                                        </tr>
+                                                    </tbody>
+                                                    <thead>
+                                                        <tr id="manage_sites">
+                                                            <td class="fw-bold cursor-pointer">Manage Payments:</td>
+                                                            <td class="d-flex justify-content-center"><i class="fas fa-angle-down arrow"></i></td>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="manage_payments_content">
+                                                        <tr>
+                                                            <td>
+                                                                <label for="payment_id">Add</label>
+                                                            </td>
+                                                            <td class="d-flex justify-content-center"><input type="checkbox" id="payment_id_add" value="1" name="payment_id[7][payment_module][]"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><label for="payment_id">Edit</label></td>
+                                                            <td class="d-flex justify-content-center" id="update-7"><input type="checkbox" id="payment_id_edit" value="2" name="payment_id[7][payment_module][]"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><label for="payment_id">Delete</label></td>
+                                                            <td class="d-flex justify-content-center" id="del-7"><input type="checkbox" id="payment_id_delete" value="3" name="payment_id[7][payment_module][]"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><label for="payment_id">View</label></td>
+                                                            <td class="d-flex justify-content-center" id="edit-7"><input type="checkbox" id="payment_id_view" value="4" name="payment_id[7][payment_module][]"></td>
+                                                        </tr>
+                                                    </tbody>
+                                                    <thead>
+                                                        <tr id="manage_sites">
+                                                            <td class="fw-bold cursor-pointer">Manage Reports:</td>
+                                                            <td class="d-flex justify-content-center"><i class="fas fa-angle-down arrow"></i></td>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="manage_report_content">
+                                                        <tr>
+                                                            <td>
+                                                                <label for="report_id">Add</label>
+                                                            </td>
+                                                            <td class="d-flex justify-content-center"><input type="checkbox" id="report_id_add" value="1" name="report_id[7][report_module][]"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><label for="report_id">Edit</label></td>
+                                                            <td class="d-flex justify-content-center" id="update-7"><input type="checkbox" id="report_id_edit" value="2" name="report_id[7][report_module][]"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><label for="report_id">Delete</label></td>
+                                                            <td class="d-flex justify-content-center" id="del-7"><input type="checkbox" id="report_id_delete" value="3" name="report_id[7][report_module][]"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><label for="report_id">View</label></td>
+                                                            <td class="d-flex justify-content-center" id="edit-7"><input type="checkbox" id="report_id_view" value="4" name="report_id[7][report_module][]"></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <!-- table end -->
+                                            </div>
+                                        </div>
+                                        <button type="submit" id="submit_update_roles" class="btn btn-primary">Submit</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="deleteRolesModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                        <div class="modal-dialog modal-confirm">
+                            <div class="modal-content">
+                                <div class="modal-header flex-column">
+                                    <div class="icon-box">
+                                        <i class="las la-times-circle"></i>
+                                    </div>
+                                    <h4 class="modal-title w-100">Are you sure?</h4>
+                                    <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">&times;</button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Do you really want to delete these records? This process cannot be undone.</p>
+                                </div>
+                                <div class="modal-footer justify-content-center">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                    <button type="button" id="deleteRolesModalButton" class="btn btn-danger">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('../layouts/footer.ejs') %>
