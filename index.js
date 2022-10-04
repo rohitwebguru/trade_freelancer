@@ -10,6 +10,10 @@ const app = express();
 var cron = require('node-cron');
 const axios = require('axios');
 
+app.get('/temp', (req, res) => {
+    res.send("working");
+})
+
 app.locals.baseURL = "http://localhost:8000"
 app.locals.metaTitle = "Freelancer Marketing"
 
