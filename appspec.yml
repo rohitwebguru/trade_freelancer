@@ -4,7 +4,6 @@ files:
   - source: /
     destination: /home/ec2-user/trade_marketplace
 hooks:
-  
   BeforeInstall:
     - location: scripts/beforeinstall.sh
       timeout: 300
