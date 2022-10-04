@@ -1,11 +1,11 @@
-version: 0.2
+version: 0.0
 os: linux
 files:
   - source: /
     destination: /home/ec2-user/trade_marketplace
 hooks:
   ApplicationStop:
-    - location: scripts/application_stop.sh
+    - location: scripts/applicationstop.sh
       timeout: 300
       runas: ec2-user
   BeforeInstall:
