@@ -4,10 +4,10 @@ files:
   - source: /
     destination: /home/ec2-user/trade_marketplace
 hooks:
-  ApplicationStop:
-    - location: scripts/applicationstop.sh
-      timeout: 300
-      runas: ec2-user
+  #ApplicationStop:
+    #- location: scripts/applicationstop.sh
+     # timeout: 300
+      #runas: ec2-user
   BeforeInstall:
     - location: scripts/beforeinstall.sh
       timeout: 300
