@@ -31,12 +31,12 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 // Database Connection
 
-/*
+
 db.connect((err) => {
     if (err) throw err;
     console.log('Database connected');
 })
-*/
+
 
 const date_ob = new Date();
 const day = ("0" + date_ob.getDate()).slice(-2);
