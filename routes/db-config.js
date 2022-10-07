@@ -1,9 +1,9 @@
 const mysql = require("mysql");
 
 const db = mysql.createConnection({
-    host: 'localhost',//process.env.DATABASE_HOST,
+    host: '100.27.27.17',//process.env.DATABASE_HOST,
     user: 'root',//process.env.DATABASE_USER,
-    password: '',//process.env.DATABASE_PASSWORD,
+    password: 'admin',//process.env.DATABASE_PASSWORD,
     database: 'freelancer_marketing',//process.env.DATABASE,
 });
 
