@@ -10,7 +10,7 @@ const app = express();
 var cron = require('node-cron');
 const axios = require('axios');
 
-app.locals.baseURL = "http://ec2-100-27-27-17.compute-1.amazonaws.com:8000/"
+app.locals.baseURL = "http://ec2-34-205-63-120.compute-1.amazonaws.com:8000/"
 app.locals.metaTitle = "Freelancer Marketing"
 
 app.use(express.static(path.join(__dirname, 'public')));
