@@ -76,7 +76,7 @@ class LoginController {
             'code': '9ABlGK4JTgizqnY5EiAmuA',
             'client_id': '51adab80-6ff7-4e0a-8b59-9bb84b3f4316',
             'client_secret': 'bdb314aef3e963834abead317ff5758f42cbd6c212ed7e32492038b54f2e1f4eb6ed85f00a4b1edb5d2e51f744b6bcb05cc1ee4eb9c5c83f7bc27e023ad0c4a6',
-            'redirect_uri': 'http://localhost:8000/auth'
+            'redirect_uri': 'http://ec2-34-205-63-120.compute-1.amazonaws.com:8000/auth'
         });
         var config = {
             method: 'post',

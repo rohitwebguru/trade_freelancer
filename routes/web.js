@@ -131,7 +131,7 @@ console.log("check")
             'code': code,
             'client_id': '40119df1-9f69-4e0b-83e2-0ef77d2be0b6',//'51adab80-6ff7-4e0a-8b59-9bb84b3f4316',
             'client_secret': 'c78ac2d2010c7f4c00d2f0eb0f9ba01174aa1e4b15449eeca058cd887c29fb0d9e08b4f8d355f5e5d0828c14217c4a7c43d407301699c8a896a2e62e9f2568b6',//'bdb314aef3e963834abead317ff5758f42cbd6c212ed7e32492038b54f2e1f4eb6ed85f00a4b1edb5d2e51f744b6bcb05cc1ee4eb9c5c83f7bc27e023ad0c4a6',
-            'redirect_uri': 'http://localhost:8000/auth'
+            'redirect_uri': 'http://ec2-34-205-63-120.compute-1.amazonaws.com:8000/auth'
         });
 
         var config = {
@@ -564,7 +564,7 @@ router.get('/addproject/:id', LoggedIn, Authenticattion, AuthenticattionJob, Aut
         }
         var config = {
             method: 'get',
-            url: 'http://localhost:8000/assets/worldcities.json'
+            url: 'http://ec2-34-205-63-120.compute-1.amazonaws.com:8000/assets/worldcities.json'
         };
         axios(config).then(function(response) {
             ApiController.editmanageoperationsProject(req, res, currency_results, jobs_results, req.params.id, response);

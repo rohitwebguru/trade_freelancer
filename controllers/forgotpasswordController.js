@@ -22,7 +22,7 @@ function sendEmail(email, token) {
         from: mail.options.auth.user,
         to: email,
         subject: 'Reset Password Link - Freelancer Marketing',
-        html   : '<p>You requested for reset password, kindly use this <a href="http://localhost:8000/reset-password/' + token + '">link</a> to reset your password</p>'
+        html   : '<p>You requested for reset password, kindly use this <a href="http://ec2-34-205-63-120.compute-1.amazonaws.com:8000/reset-password/' + token + '">link</a> to reset your password</p>'
     }
     mail.sendMail(mailOptions, function(error, info) {
         if (error) {
@@ -77,7 +77,7 @@ class ForgotPasswordController {
                         id: result[0].id
                     }
                     const token = jwt.sign(payload,secret,{expiresIn:'1m'});
-                    const link = `http://localhost:8000/reset-password/${token}`;
+                    const link = `http://ec2-34-205-63-120.compute-1.amazonaws.com:8000/reset-password/${token}`;
                     const obj = {
                         "email": email,
                         "token": token

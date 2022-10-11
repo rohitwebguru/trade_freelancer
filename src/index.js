@@ -76,4 +76,4 @@ db.query("SELECT * FROM authenticattion Order by id desc LIMIT 1", function(err,
 // Set Routes
 app.use(homeRoutes.routes);
 
-app.listen(8000, () => console.log('App is listening on url http://localhost:8000'))
+app.listen(8000, () => console.log('App is listening on url http://ec2-34-205-63-120.compute-1.amazonaws.com:8000'))
