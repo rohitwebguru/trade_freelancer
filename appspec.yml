@@ -5,7 +5,7 @@ files:
     destination: /home/ubuntu/trade_marketplace
 hooks:
   ApplicationStop:
-    - location: scripts/application_stop.sh
+    - location: scripts/applicationstop.sh
       timeout: 300
       runas: ubuntu
   BeforeInstall:

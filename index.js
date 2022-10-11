@@ -10,7 +10,7 @@ const app = express();
 var cron = require('node-cron');
 const axios = require('axios');
 
-app.locals.baseURL = "http://localhost:8000"
+app.locals.baseURL = "http://ec2-34-205-63-120.compute-1.amazonaws.com:8000/"
 app.locals.metaTitle = "Freelancer Marketing"
 
 app.use(express.static(path.join(__dirname, 'public')));
@@ -31,10 +31,12 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 // Database Connection
 
+
 db.connect((err) => {
     if (err) throw err;
     console.log('Database connected');
 })
+
 
 const date_ob = new Date();
 const day = ("0" + date_ob.getDate()).slice(-2);
