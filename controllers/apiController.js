@@ -2177,7 +2177,7 @@ class ApiController {
                             var body = `<p><b style='text-transform:capitalize;'>${res.user.username}</b> has invited you to join their team at freelance marketing.</p>
                                         <p>Click the link now to join freelance trade marketing platform : 
                                             <b>
-                                                <a href="http://localhost:8000/register/${token}">Register link</a>
+                                                <a href="http://ec2-34-205-63-120.compute-1.amazonaws.com:8000/register/${token}">Register link</a>
                                             </b>
                                         </p>`;
                             var emailstatus = sendEmail(val, token, subject, body);
@@ -2205,7 +2205,7 @@ class ApiController {
                                     var body = `<p>${res.user.username} has invited you to join their team at freelance marketing.</p>
                                         <p>Click the link to join their team : 
                                             <b>
-                                                <a href="http://localhost:8000/joinlink/${token}">Join team Link</a>
+                                                <a href="http://ec2-34-205-63-120.compute-1.amazonaws.com:8000/joinlink/${token}">Join team Link</a>
                                             </b>
                                         </p>`;
                                     var emailstatus = sendEmail(val, token, subject, body);
@@ -2615,7 +2615,7 @@ function sendEmail(email, token, subject, body) {
             from: mail.options.auth.user,
             to: email,
             subject: subject,
-            // html: '<p>You requested for reset password, kindly use this <a href="http://localhost:8000/reset-password/' + token + '">link</a> to reset your password</p>'
+            // html: '<p>You requested for reset password, kindly use this <a href="http://ec2-34-205-63-120.compute-1.amazonaws.com:8000/reset-password/' + token + '">link</a> to reset your password</p>'
             html: body
         }
     mail.sendMail(mailOptions, function(error, info) {

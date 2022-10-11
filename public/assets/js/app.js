@@ -1,7 +1,7 @@
 'use strict';
 //const e = require("connect-flash");
 
-var baseURL = "http://localhost:8000"
+var baseURL = "http://ec2-34-205-63-120.compute-1.amazonaws.com:8000"
 $('#navbar-search__field').on('input', function() {
     var search = $(this).val().toLowerCase();
 
@@ -139,7 +139,7 @@ $("#state, .state").on("change", async function() {
     var state = $(this).val();
     var country = $("#country").val();
     var i = 0;
-    $.get("http://localhost:8000/assets/worldcities.json", function(data) {
+    $.get("http://ec2-34-205-63-120.compute-1.amazonaws.com:8000/assets/worldcities.json", function(data) {
         data.forEach(obj => {
             if (obj.admin_name == state && obj.country == country && i == 0) {
                 $("#lat,.lat").val(obj.lat);

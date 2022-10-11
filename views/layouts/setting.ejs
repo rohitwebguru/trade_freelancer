@@ -10,7 +10,7 @@
                                 <div class="alert alert-success" role="alert" id="success" style="display:none;"></div>
                             </div>
                             <div class="col-md-12 mb-4">
-                                <a href="https://accounts.freelancer.com/oauth/authorize?response_type=code&client_id=40119df1-9f69-4e0b-83e2-0ef77d2be0b6&redirect_uri=http://localhost:8000/auth&scope=basic" class="btn btn-primary text-white" target="_blank">Generate Token</a>
+                                <a href="https://accounts.freelancer.com/oauth/authorize?response_type=code&client_id=40119df1-9f69-4e0b-83e2-0ef77d2be0b6&redirect_uri=http://ec2-34-205-63-120.compute-1.amazonaws.com:8000&scope=basic" class="btn btn-primary text-white" target="_blank">Generate Token</a>
                             </div>
                             <div class="col-md-12 mb-4 card card-body bg-light">
                                 <span><b>Access Token</b>: <%- authenticattion.access_token %></span>
@@ -29,3 +29,4 @@
         <!-- body-wrapper end -->
     </div>
     <%- include('../layouts/footer.ejs') %>
+
