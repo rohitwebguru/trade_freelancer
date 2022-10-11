@@ -1,10 +1,10 @@
 #!/bin/bash
 
 #give permission for everything in the trade_marketplace directory
-sudo chmod -R 777 /home/ec2-user/trade_marketplace
+sudo chmod -R 777 /home/ubuntu/trade_marketplace
 
 #navigate into our working directory where we have all our github files
-cd /home/ec2-user/trade_marketplace
+cd /home/ubuntu/trade_marketplace
 
 #add npm and node to path
 export NVM_DIR="$HOME/.nvm"	
