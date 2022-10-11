@@ -2,18 +2,17 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /home/ec2-user/trade_marketplace
+    destination: /home/ubuntu/trade_marketplace
 hooks:
   ApplicationStop:
     - location: scripts/applicationstop.sh
       timeout: 300
-      runas: ec2-user
+      runas: ubuntu
   BeforeInstall:
     - location: scripts/beforeinstall.sh
       timeout: 300
-      runas: ec2-user
+      runas: ubuntu
   ApplicationStart:
     - location: scripts/applicationstart.sh
       timeout: 300
-      runas: ec2-user
-file_exists_behavior: OVERWRITE
+      runas: ubuntu

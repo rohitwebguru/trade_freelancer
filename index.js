@@ -10,7 +10,11 @@ const app = express();
 var cron = require('node-cron');
 const axios = require('axios');
 
+<<<<<<< HEAD
 app.locals.baseURL = "http://ec2-34-205-63-120.compute-1.amazonaws.com:8000"
+=======
+app.locals.baseURL = "http://ec2-34-205-63-120.compute-1.amazonaws.com:8000/"
+>>>>>>> 960794b5f40394daf8c93e6e470cd67ae17b28fa
 app.locals.metaTitle = "Freelancer Marketing"
 
 app.use(express.static(path.join(__dirname, 'public')));
@@ -31,10 +35,12 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 // Database Connection
 
+
 db.connect((err) => {
     if (err) throw err;
     console.log('Database connected');
 })
+
 
 const date_ob = new Date();
 const day = ("0" + date_ob.getDate()).slice(-2);
@@ -57,4 +63,8 @@ db.query("SELECT * FROM authenticattion Order by id desc LIMIT 1", function(err,
 // Set Routes
 app.use(homeRoutes.routes);
 
+<<<<<<< HEAD
 app.listen(8000, () => console.log('App is listening on url http://ec2-34-205-63-120.compute-1.amazonaws.com:8000'))
+=======
+app.listen(8000, () => console.log('App is listening on url http://localhost:8000'))
+>>>>>>> 960794b5f40394daf8c93e6e470cd67ae17b28fa
